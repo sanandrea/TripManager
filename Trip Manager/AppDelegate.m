@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "DetailViewController.h"
+#import "UICKeyChainStore.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate>
 
@@ -17,10 +19,23 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    BOOL testLogin = YES;
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-    UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
+    UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
+    
+    if (testLogin) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        NSArray * newViewControllers = [NSArray arrayWithObjects:loginViewController,nil];
+        [mainNavigation setViewControllers:newViewControllers];
+    }else{
+        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
+        navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
+    }
+    
+    
+    
     splitViewController.delegate = self;
     return YES;
 }
