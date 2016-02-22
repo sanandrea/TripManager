@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -25,6 +26,11 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="yJX-wl-ur8"/>
+                                    </mask>
+                                </variation>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJI-yr-QOQ">
                                 <rect key="frame" x="434" y="231" width="51" height="31"/>
@@ -64,6 +70,11 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RBg-fc-Fte"/>
+                                    </mask>
+                                </variation>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,8 +86,12 @@
                             <constraint firstItem="px8-dl-tqT" firstAttribute="top" secondItem="ASe-tE-1W0" secondAttribute="bottom" constant="33" id="DPg-6O-mg4"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="centerY" secondItem="px8-dl-tqT" secondAttribute="centerY" id="JBi-Vi-AVd"/>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="LUt-dg-Pgw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ASe-tE-1W0" secondAttribute="trailing" constant="97" id="MuP-ri-7o9"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="trailing" secondItem="ASe-tE-1W0" secondAttribute="trailing" id="VTA-4C-iCQ"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="hR6-V2-Egz"/>
+                            <constraint firstItem="ASe-tE-1W0" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="hhh-P8-LDU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OFo-Av-Wc4" secondAttribute="trailing" constant="97" id="kFf-X2-25q"/>
+                            <constraint firstItem="OFo-Av-Wc4" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="kfx-7B-FqY"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="leading" secondItem="px8-dl-tqT" secondAttribute="trailing" constant="8" id="mfB-1i-h8w"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="top" secondItem="OFo-Av-Wc4" secondAttribute="bottom" constant="34" id="oEl-ny-76m"/>
                         </constraints>
@@ -201,6 +216,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="JVc-88-DIG">
+            <objects>
+                <viewController id="Wz4-F6-GwU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="geP-hv-IJE"/>
+                        <viewControllerLayoutGuide type="bottom" id="IoK-al-c5N"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="caQ-bE-uLP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x3k-eE-VM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1420" y="-630"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">

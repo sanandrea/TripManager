@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A991A80F1C7B088F00B6C289 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A80E1C7B088F00B6C289 /* main.m */; };
 		A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8111C7B088F00B6C289 /* AppDelegate.m */; };
-		A991A8151C7B088F00B6C289 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8141C7B088F00B6C289 /* MasterViewController.m */; };
+		A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8141C7B088F00B6C289 /* UserViewController.m */; };
 		A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8171C7B088F00B6C289 /* DetailViewController.m */; };
 		A991A81B1C7B088F00B6C289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A991A8191C7B088F00B6C289 /* Main.storyboard */; };
 		A991A81D1C7B088F00B6C289 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A991A81C1C7B088F00B6C289 /* Assets.xcassets */; };
@@ -44,8 +44,8 @@
 		A991A80E1C7B088F00B6C289 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A991A8101C7B088F00B6C289 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A991A8111C7B088F00B6C289 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A991A8131C7B088F00B6C289 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		A991A8141C7B088F00B6C289 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		A991A8131C7B088F00B6C289 /* UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		A991A8141C7B088F00B6C289 /* UserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		A991A8161C7B088F00B6C289 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		A991A8171C7B088F00B6C289 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		A991A81A1C7B088F00B6C289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 				A991A8111C7B088F00B6C289 /* AppDelegate.m */,
 				A991A8451C7B0BC800B6C289 /* LoginViewController.h */,
 				A991A8461C7B0BC800B6C289 /* LoginViewController.m */,
-				A991A8131C7B088F00B6C289 /* MasterViewController.h */,
-				A991A8141C7B088F00B6C289 /* MasterViewController.m */,
+				A991A8131C7B088F00B6C289 /* UserViewController.h */,
+				A991A8141C7B088F00B6C289 /* UserViewController.m */,
 				A991A8161C7B088F00B6C289 /* DetailViewController.h */,
 				A991A8171C7B088F00B6C289 /* DetailViewController.m */,
 				A991A8191C7B088F00B6C289 /* Main.storyboard */,
@@ -303,7 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */,
-				A991A8151C7B088F00B6C289 /* MasterViewController.m in Sources */,
+				A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
 				A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */,

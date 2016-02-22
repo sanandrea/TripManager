@@ -6,15 +6,15 @@
 //  Copyright © 2016 Andi Palo. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "UserViewController.h"
 #import "DetailViewController.h"
 
-@interface MasterViewController ()
+@interface UserViewController ()
 
 @property NSMutableArray *objects;
 @end
 
-@implementation MasterViewController
+@implementation UserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

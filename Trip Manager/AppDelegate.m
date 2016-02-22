@@ -11,7 +11,7 @@
 #import "UICKeyChainStore.h"
 #import "LoginViewController.h"
 
-@interface AppDelegate () <UISplitViewControllerDelegate>
+@interface AppDelegate () <UISplitViewControllerDelegate,LoginDelegate>
 
 @end
 
@@ -38,6 +38,12 @@
     
     splitViewController.delegate = self;
     return YES;
+}
+
+-(void) loginCompletedSuccesfully{
+    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
