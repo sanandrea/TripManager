@@ -20,6 +20,11 @@
 		A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8461C7B0BC800B6C289 /* LoginViewController.m */; };
 		A991A84B1C7B0C8900B6C289 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A991A84A1C7B0C8900B6C289 /* Security.framework */; };
 		A991A84E1C7B0CE400B6C289 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A84D1C7B0CE400B6C289 /* UICKeyChainStore.m */; };
+		A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8511C7B18ED00B6C289 /* APConstants.m */; };
+		A991A8551C7B1BD800B6C289 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8541C7B1BD800B6C289 /* Customer.m */; };
+		A991A8581C7B1BE600B6C289 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8571C7B1BE600B6C289 /* Trip.m */; };
+		A991A85E1C7B599000B6C289 /* CustomerRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A85D1C7B599000B6C289 /* CustomerRepository.m */; };
+		A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8601C7B59A700B6C289 /* TripRepository.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +69,16 @@
 		A991A84A1C7B0C8900B6C289 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A991A84C1C7B0CE400B6C289 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
 		A991A84D1C7B0CE400B6C289 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
+		A991A8501C7B18ED00B6C289 /* APConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APConstants.h; sourceTree = "<group>"; };
+		A991A8511C7B18ED00B6C289 /* APConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APConstants.m; sourceTree = "<group>"; };
+		A991A8531C7B1BD800B6C289 /* Customer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Customer.h; sourceTree = "<group>"; };
+		A991A8541C7B1BD800B6C289 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
+		A991A8561C7B1BE600B6C289 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
+		A991A8571C7B1BE600B6C289 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
+		A991A85C1C7B599000B6C289 /* CustomerRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerRepository.h; sourceTree = "<group>"; };
+		A991A85D1C7B599000B6C289 /* CustomerRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerRepository.m; sourceTree = "<group>"; };
+		A991A85F1C7B59A700B6C289 /* TripRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripRepository.h; sourceTree = "<group>"; };
+		A991A8601C7B59A700B6C289 /* TripRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripRepository.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +134,7 @@
 		A991A80C1C7B088F00B6C289 /* Trip Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A991A84F1C7B18D800B6C289 /* model */,
 				A991A8101C7B088F00B6C289 /* AppDelegate.h */,
 				A991A8111C7B088F00B6C289 /* AppDelegate.m */,
 				A991A8451C7B0BC800B6C289 /* LoginViewController.h */,
@@ -170,6 +186,23 @@
 			);
 			name = ThirdParty;
 			path = "Trip Manager/ThirdParty";
+			sourceTree = "<group>";
+		};
+		A991A84F1C7B18D800B6C289 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A991A8501C7B18ED00B6C289 /* APConstants.h */,
+				A991A8511C7B18ED00B6C289 /* APConstants.m */,
+				A991A8531C7B1BD800B6C289 /* Customer.h */,
+				A991A8541C7B1BD800B6C289 /* Customer.m */,
+				A991A85C1C7B599000B6C289 /* CustomerRepository.h */,
+				A991A85D1C7B599000B6C289 /* CustomerRepository.m */,
+				A991A8561C7B1BE600B6C289 /* Trip.h */,
+				A991A8571C7B1BE600B6C289 /* Trip.m */,
+				A991A85F1C7B59A700B6C289 /* TripRepository.h */,
+				A991A8601C7B59A700B6C289 /* TripRepository.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,11 +336,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */,
+				A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */,
 				A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
 				A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */,
+				A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */,
 				A991A84E1C7B0CE400B6C289 /* UICKeyChainStore.m in Sources */,
+				A991A8551C7B1BD800B6C289 /* Customer.m in Sources */,
+				A991A8581C7B1BE600B6C289 /* Trip.m in Sources */,
+				A991A85E1C7B599000B6C289 /* CustomerRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

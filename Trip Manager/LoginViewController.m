@@ -7,6 +7,9 @@
 //
 
 #import "LoginViewController.h"
+#import "APConstants.h"
+#import "UICKeyChainStore.h"
+#import "CustomerRepository.h"
 
 @interface LoginViewController ()
 
@@ -26,17 +29,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)goAction:(id)sender {
+    LBRESTAdapter *adapter = [[APConstants sharedInstance] getCurrentAdapter];
+    CustomerRepository *crepo = (CustomerRepository*) [adapter repositoryWithClass:[CustomerRepository class]];
+    
+    [crepo invokeStaticMethod:@"" parameters:@{@"username" : @"andi", @"password" : @"test"}
+                      success:^(id data){
+                          NSLog(@"We received: %@", data);
+                          [self.delegate loginCompletedSuccesfully];
+                          }
+                      failure:^(NSError *error){
+                          NSLog(@"We got error %@", error);
+    }];
     [self.delegate loginCompletedSuccesfully];
 }
 - (IBAction)switchAction:(id)sender {

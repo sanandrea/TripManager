@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASe-tE-1W0">
-                                <rect key="frame" x="116" y="173" width="367" height="30"/>
+                                <rect key="frame" x="116" y="173" width="368" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VIo-7D-eoS"/>
                                     <constraint firstAttribute="width" constant="367" id="yJX-wl-ur8"/>
@@ -33,7 +33,7 @@
                                 </variation>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FJI-yr-QOQ">
-                                <rect key="frame" x="434" y="231" width="51" height="31"/>
+                                <rect key="frame" x="435" y="231" width="51" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="8eg-vc-ZDs"/>
                                     <constraint firstAttribute="height" constant="31" id="pzV-3Y-Id8"/>
@@ -43,7 +43,7 @@
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="px8-dl-tqT">
-                                <rect key="frame" x="116" y="236" width="310" height="21"/>
+                                <rect key="frame" x="116" y="236" width="311" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="SfV-ix-ezD"/>
                                 </constraints>
@@ -63,7 +63,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFo-Av-Wc4">
-                                <rect key="frame" x="116" y="109" width="367" height="30"/>
+                                <rect key="frame" x="116" y="109" width="368" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="367" id="RBg-fc-Fte"/>
                                     <constraint firstAttribute="height" constant="30" id="VtT-kp-fZo"/>
@@ -86,15 +86,21 @@
                             <constraint firstItem="px8-dl-tqT" firstAttribute="top" secondItem="ASe-tE-1W0" secondAttribute="bottom" constant="33" id="DPg-6O-mg4"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="centerY" secondItem="px8-dl-tqT" secondAttribute="centerY" id="JBi-Vi-AVd"/>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="LUt-dg-Pgw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ASe-tE-1W0" secondAttribute="trailing" constant="97" id="MuP-ri-7o9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ASe-tE-1W0" secondAttribute="trailing" constant="96" id="MuP-ri-7o9"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="trailing" secondItem="ASe-tE-1W0" secondAttribute="trailing" id="VTA-4C-iCQ"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="hR6-V2-Egz"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="hhh-P8-LDU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="OFo-Av-Wc4" secondAttribute="trailing" constant="97" id="kFf-X2-25q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OFo-Av-Wc4" secondAttribute="trailing" constant="96" id="kFf-X2-25q"/>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="kfx-7B-FqY"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="leading" secondItem="px8-dl-tqT" secondAttribute="trailing" constant="8" id="mfB-1i-h8w"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="top" secondItem="OFo-Av-Wc4" secondAttribute="bottom" constant="34" id="oEl-ny-76m"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="LUt-dg-Pgw"/>
+                                <exclude reference="hR6-V2-Egz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="goButton" destination="3jh-d4-bfm" id="pQZ-GK-Ars"/>

@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "UICKeyChainStore.h"
 #import "LoginViewController.h"
+#import "APConstants.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate,LoginDelegate>
 
@@ -20,6 +21,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     BOOL testLogin = YES;
+    
+    //Clear keychain on first run in case of reinstallation
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+        // Delete values from keychain here
+        
+        //Setup KeyChain Access to store token and username in order to be accessible application wide
+        UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:kKeyChainServiceURL];
+        [keychain removeItemForKey:kSecurityTokenKey];
+        [keychain removeItemForKey:kSecurityUserNameKey];
+        
+        [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
