@@ -7,6 +7,7 @@
 //
 
 #import "APConstants.h"
+#import "Customer.h"
 
 NSString *const kSecurityTokenKey = @"integrated-services-token";
 NSString *const kSecurityUserNameKey = @"integrated-services-user";
@@ -17,6 +18,7 @@ static int randomLength = 6;
 
 @interface APConstants()
 @property (strong, nonatomic) LBRESTAdapter *adapter;
+@property (strong, nonatomic) CustomerRepository* repository;
 @end
 
 @implementation APConstants
@@ -34,12 +36,19 @@ static int randomLength = 6;
 - (id) init{
     if (self = [super init]) {
         self.adapter = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/api/v1"]];
+        self.repository = (CustomerRepository*) [self.adapter repositoryWithClass:[CustomerRepository class]];
     }
     return self;
 }
 
 - (LBRESTAdapter*) getCurrentAdapter{
     return self.adapter;
+}
+- (LBPersistedModelRepository*) getCustomerRepository{
+    return self.repository;
+}
+- (LBUser*) getLoggedInUser{
+    return self.repository.cachedCurrentUser;
 }
 
 +(NSString*) randomUsername{

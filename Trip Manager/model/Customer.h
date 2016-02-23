@@ -7,11 +7,13 @@
 //
 
 #import <LoopBack/LoopBack.h>
-
-
-
+#import "APConstants.h"
 
 @interface Customer : LBUser
+
+@property (nonatomic, assign) UserRole role;
+
+-(void) findRole;
 
 @end
 

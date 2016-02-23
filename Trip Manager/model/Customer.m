@@ -10,6 +10,12 @@
 
 @implementation Customer
 
+-(void) findRole{
+#warning TODO
+    self.role = kUserRoleDefault;
+    
+}
+
 @end
 
 @interface CustomerRepository()

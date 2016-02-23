@@ -22,7 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.registerInfo.text = NSLocalizedString(@"New user", @"New user label");
+    [self.registerSwitch setOn:false];
     [self switchAction:self];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,24 +34,25 @@
 
 
 - (IBAction)goAction:(id)sender {
-    LBRESTAdapter *adapter = [[APConstants sharedInstance] getCurrentAdapter];
-    CustomerRepository *crepo = (CustomerRepository*) [adapter repositoryWithClass:[CustomerRepository class]];
-    
-    NSString *username = [APConstants randomUsername];
+    CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
+#warning TODO
+    NSString *username = @"andi";
     NSString *password = @"test";
-    
-    Customer __block *customer = (Customer*)[crepo createUserWithUserName:username password:password];
-    
-    [customer saveWithSuccess:^{
+    Customer *customer = (Customer*)[crepo createUserWithUserName:username password:password];
+    if (![self.registerSwitch isOn]) {
         [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
             ALog("Here %@", user);
+            [customer findRole];
+            [self.delegate loginCompletedSuccesfully];
         } failure:CALLBACK_FAILURE_BLOCK];
-    } failure:CALLBACK_FAILURE_BLOCK];
-
-    
-    
-    
-    [self.delegate loginCompletedSuccesfully];
+    }else{
+        [customer saveWithSuccess:^{
+            [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
+                ALog("Here %@", user);
+                [self.delegate loginCompletedSuccesfully];
+            } failure:CALLBACK_FAILURE_BLOCK];
+        } failure:CALLBACK_FAILURE_BLOCK];
+    }
 }
 - (IBAction)switchAction:(id)sender {
     if (self.registerSwitch.isOn) {

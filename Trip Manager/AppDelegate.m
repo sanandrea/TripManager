@@ -11,6 +11,7 @@
 #import "UICKeyChainStore.h"
 #import "LoginViewController.h"
 #import "APConstants.h"
+#import "Customer.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate,LoginDelegate>
 
@@ -20,7 +21,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    BOOL testLogin = YES;
+    LBRESTAdapter *adapter = [[APConstants sharedInstance] getCurrentAdapter];
     
     //Clear keychain on first run in case of reinstallation
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
@@ -34,22 +35,31 @@
         [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    
     // Override point for customization after application launch.
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
-    
-    if (testLogin) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if (adapter.accessToken == nil) {
         LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        loginViewController.delegate = self;
         NSArray * newViewControllers = [NSArray arrayWithObjects:loginViewController,nil];
         [mainNavigation setViewControllers:newViewControllers];
     }else{
+        //left Navigation View Controller
+        Customer *customer = (Customer*)[[APConstants sharedInstance] getLoggedInUser];
+        UIViewController *nextViewController;
+        if (customer.role == kUserRoleAdmin || customer.role == kUserRoleManager) {
+            nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"userViewController"];
+        }else{
+            nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];
+        }
+        NSArray * newViewControllers = [NSArray arrayWithObjects:nextViewController,nil];
+        [mainNavigation setViewControllers:newViewControllers];
+        
+        //right Navigation View Controller
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     }
-    
-    
     
     splitViewController.delegate = self;
     return YES;
@@ -58,7 +68,18 @@
 -(void) loginCompletedSuccesfully{
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
-    
+    UIViewController *nextViewController;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    //find logged in customer from repo
+    Customer *customer = (Customer*)[[APConstants sharedInstance] getLoggedInUser];
+    assert(customer);
+    if (customer.role == kUserRoleAdmin || customer.role == kUserRoleManager) {
+        nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"userViewController"];
+    }else{
+        nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];
+    }
+    NSArray * newViewControllers = [NSArray arrayWithObjects:nextViewController,nil];
+    [mainNavigation setViewControllers:newViewControllers];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

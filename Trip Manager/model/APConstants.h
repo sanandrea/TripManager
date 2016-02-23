@@ -16,6 +16,14 @@
     ALog("Callback failed: %@", error.description); \
     }
 
+
+typedef enum UserRole {
+    kUserRoleDefault,
+    kUserRoleManager,
+    kUserRoleAdmin
+} UserRole;
+
+
 extern NSString *const kSecurityTokenKey;
 extern NSString *const kSecurityUserNameKey;
 extern NSString *const kKeyChainServiceURL;
@@ -24,6 +32,8 @@ extern NSString *const kKeyChainServiceURL;
 
 + (id) sharedInstance;
 - (LBRESTAdapter*) getCurrentAdapter;
+- (LBPersistedModelRepository*) getCustomerRepository;
+- (LBUser*) getLoggedInUser;
 
 +(NSString*) randomUsername;
 
