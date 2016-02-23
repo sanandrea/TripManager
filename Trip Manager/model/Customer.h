@@ -8,6 +8,14 @@
 
 #import <LoopBack/LoopBack.h>
 
+
+
+
 @interface Customer : LBUser
 
+@end
+
+
+@interface CustomerRepository : LBUserRepository
++ (instancetype)repository;
 @end

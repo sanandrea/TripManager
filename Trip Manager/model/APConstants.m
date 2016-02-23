@@ -12,6 +12,9 @@ NSString *const kSecurityTokenKey = @"integrated-services-token";
 NSString *const kSecurityUserNameKey = @"integrated-services-user";
 NSString *const kKeyChainServiceURL = @"tripmanager.andipalo.com";
 
+static NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
+static int randomLength = 6;
+
 @interface APConstants()
 @property (strong, nonatomic) LBRESTAdapter *adapter;
 @end
@@ -37,6 +40,16 @@ NSString *const kKeyChainServiceURL = @"tripmanager.andipalo.com";
 
 - (LBRESTAdapter*) getCurrentAdapter{
     return self.adapter;
+}
+
++(NSString*) randomUsername{
+    NSMutableString *randomString = [NSMutableString stringWithCapacity: randomLength];
+    
+    for (int i=0; i<randomLength; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    
+    return randomString;
 }
 
 @end

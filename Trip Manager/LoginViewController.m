@@ -9,7 +9,8 @@
 #import "LoginViewController.h"
 #import "APConstants.h"
 #import "UICKeyChainStore.h"
-#import "CustomerRepository.h"
+#import "Customer.h"
+
 
 @interface LoginViewController ()
 
@@ -34,14 +35,20 @@
     LBRESTAdapter *adapter = [[APConstants sharedInstance] getCurrentAdapter];
     CustomerRepository *crepo = (CustomerRepository*) [adapter repositoryWithClass:[CustomerRepository class]];
     
-    [crepo invokeStaticMethod:@"" parameters:@{@"username" : @"andi", @"password" : @"test"}
-                      success:^(id data){
-                          NSLog(@"We received: %@", data);
-                          [self.delegate loginCompletedSuccesfully];
-                          }
-                      failure:^(NSError *error){
-                          NSLog(@"We got error %@", error);
-    }];
+    NSString *username = [APConstants randomUsername];
+    NSString *password = @"test";
+    
+    Customer __block *customer = (Customer*)[crepo createUserWithUserName:username password:password];
+    
+    [customer saveWithSuccess:^{
+        [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
+            ALog("Here %@", user);
+        } failure:CALLBACK_FAILURE_BLOCK];
+    } failure:CALLBACK_FAILURE_BLOCK];
+
+    
+    
+    
     [self.delegate loginCompletedSuccesfully];
 }
 - (IBAction)switchAction:(id)sender {

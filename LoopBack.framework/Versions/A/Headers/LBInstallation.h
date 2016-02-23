@@ -1,12 +1,12 @@
 /**
  * @file LBInstallation.h
+ *
  * @author Raymond Feng
  * @copyright (c) 2013 StrongLoop. All rights reserved.
  */
-#ifndef LoopBack_LBInstallation_h
-#define LoopBack_LBInstallation_h
 
-#import <LoopBack/LoopBack.h>
+#import "LBPersistedModel.h"
+#import "LBRESTAdapter.h"
 
 @class LBInstallation;
 @class LBInstallationRepository;
@@ -16,7 +16,7 @@
  * connects the device token with application/user/timeZone/subscriptions for
  * the server to find devices of interest for push notifications.
  */
-@interface LBInstallation : LBModel
+@interface LBInstallation : LBPersistedModel
 
 /**
  * The app id received from LoopBack application signup.
@@ -101,13 +101,9 @@
 /**
  * Custom ModelRepository subclass for LBInstallation
  */
-@interface LBInstallationRepository : LBModelRepository
+@interface LBInstallationRepository : LBPersistedModelRepository
 
-/**
- * Get a singleton for LBInstallationRepository
- */
 + (instancetype)repository;
 
 @end
 
-#endif

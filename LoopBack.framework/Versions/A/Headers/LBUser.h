@@ -5,17 +5,18 @@
  * @copyright (c) 2014 StrongLoop. All rights reserved.
  */
 
-#import "LBModel.h"
+#import "LBPersistedModel.h"
 
 @class LBAccessToken;
 
 /**
  * A local representative of a user instance on the server.
  */
-@interface LBUser : LBModel
+@interface LBUser : LBPersistedModel
 
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *username;
 
 @property (nonatomic, copy) NSString *realm;
 @property (nonatomic, strong) NSNumber *emailVerified;
@@ -27,7 +28,10 @@
  * A local representative of the User type on the server, encapsulating
  * all User properties.
  */
-@interface LBUserRepository : LBModelRepository
+@interface LBUserRepository : LBPersistedModelRepository
+
+@property (nonatomic, readonly) NSString *currentUserId;
+@property (nonatomic, readonly) LBUser *cachedCurrentUser;
 
 + (instancetype)repository;
 
@@ -52,8 +56,17 @@
                        password:(NSString*)password;
 
 /**
+ * Creates a user with the given credentials.
+ *
+ * @param  username    The username.
+ * @param  password    The user password.
+ */
+- (LBUser *)createUserWithUserName:(NSString*)username
+                       password:(NSString*)password;
+
+/**
  * Blocks of this type are executed when
- * LBUserRepository::login:success:failure: is successful.
+ * LBUserRepository::loginWithEmail:password:success:failure: is successful.
  */
 typedef void (^LBUserLoginSuccessBlock)(LBAccessToken* token);
 /**
@@ -71,8 +84,22 @@ typedef void (^LBUserLoginSuccessBlock)(LBAccessToken* token);
                failure:(SLFailureBlock)failure;
 
 /**
+ * Attempts to log in with the given credentials.  The returned access
+ * token will be passed for all subsequent server interaction.
+ *
+ * @param username The username.
+ * @param password The user password.
+ * @param success  The block to be executed when the login is successful.
+ * @param failure  The block to be executed when the login fails.
+ */
+- (void)loginWithUserName:(NSString*)username
+              password:(NSString*)password
+               success:(LBUserLoginSuccessBlock)success
+               failure:(SLFailureBlock)failure;
+
+/**
  * Blocks of this type are executed when
- * LBUserRepository::login:success:failure: is successful.
+ * LBUserRepository::userByLoginWithEmail:password:success:failure: is successful.
  */
 typedef void (^LBUserLoginFindUserSuccessBlock)(LBUser *user);
 /**
@@ -88,8 +115,37 @@ typedef void (^LBUserLoginFindUserSuccessBlock)(LBUser *user);
                      success:(LBUserLoginFindUserSuccessBlock)success
                      failure:(SLFailureBlock)failure;
 
+
 /**
- * Blocks of this type are executed when LBUserRepository::logoutWithSuccess: is
+ * Attempts to log in with the given credentials and return the LBUser.
+ *
+ * @param username The username.
+ * @param password The user password.
+ * @param success  The block to be executed when the login is successful.
+ * @param failure  The block to be executed when the login fails.
+ */
+- (void)userByLoginWithUserName:(NSString*)username
+                       password:(NSString*)password
+                        success:(LBUserLoginFindUserSuccessBlock)success
+                        failure:(SLFailureBlock)failure;
+
+/**
+ * Blocks of this type are executed when
+ * LBUserRepository::findCurrentUserWithSuccess:failure: is successful.
+ */
+typedef void (^LBUserFindUserSuccessBlock)(LBUser *user);
+/**
+ * Fetch the user model of the currently logged in user.
+ * Invokes {@code success(nil)} when no user is logged in.
+ *
+ * @param success  The block to be executed when the fetch is successful.
+ * @param failure  The block to be executed when the fetch fails.
+ */
+- (void)findCurrentUserWithSuccess:(LBUserFindUserSuccessBlock)success
+                           failure:(SLFailureBlock)failure;
+
+/**
+ * Blocks of this type are executed when LBUserRepository::logoutWithSuccess:success:failure: is
  * successful.
  */
 typedef void (^LBUserLogoutSuccessBlock)();
@@ -101,4 +157,21 @@ typedef void (^LBUserLogoutSuccessBlock)();
  */
 - (void)logoutWithSuccess:(LBUserLogoutSuccessBlock)success
                   failure:(SLFailureBlock)failure;
+
+/**
+ * Blocks of this type are executed when
+ * LBUserRepository::resetPasswordWithEmail:success:failure: is successful.
+ */
+typedef void (^LBUserResetSuccessBlock)();
+/**
+ * Triggers reset password for a user with email.
+ *
+ * @param email    The user email.
+ * @param success  The block to be executed when the reset is successful.
+ * @param failure  The block to be executed when the reset fails.
+ */
+- (void)resetPasswordWithEmail:(NSString*)email
+               success:(LBUserResetSuccessBlock)success
+               failure:(SLFailureBlock)failure;
+
 @end

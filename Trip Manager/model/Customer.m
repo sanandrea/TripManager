@@ -11,3 +11,16 @@
 @implementation Customer
 
 @end
+
+@interface CustomerRepository()
+@property (nonatomic, readwrite) Customer *cachedCurrentCustomer;
+
+@end
+
+@implementation CustomerRepository
++ (instancetype)repository {
+    return [self repositoryWithClassName:@"customers"];
+}
+
+
+@end

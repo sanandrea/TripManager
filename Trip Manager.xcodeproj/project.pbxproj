@@ -23,7 +23,6 @@
 		A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8511C7B18ED00B6C289 /* APConstants.m */; };
 		A991A8551C7B1BD800B6C289 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8541C7B1BD800B6C289 /* Customer.m */; };
 		A991A8581C7B1BE600B6C289 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8571C7B1BE600B6C289 /* Trip.m */; };
-		A991A85E1C7B599000B6C289 /* CustomerRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A85D1C7B599000B6C289 /* CustomerRepository.m */; };
 		A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8601C7B59A700B6C289 /* TripRepository.m */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +74,6 @@
 		A991A8541C7B1BD800B6C289 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		A991A8561C7B1BE600B6C289 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		A991A8571C7B1BE600B6C289 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		A991A85C1C7B599000B6C289 /* CustomerRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerRepository.h; sourceTree = "<group>"; };
-		A991A85D1C7B599000B6C289 /* CustomerRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerRepository.m; sourceTree = "<group>"; };
 		A991A85F1C7B59A700B6C289 /* TripRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripRepository.h; sourceTree = "<group>"; };
 		A991A8601C7B59A700B6C289 /* TripRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripRepository.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,8 +192,6 @@
 				A991A8511C7B18ED00B6C289 /* APConstants.m */,
 				A991A8531C7B1BD800B6C289 /* Customer.h */,
 				A991A8541C7B1BD800B6C289 /* Customer.m */,
-				A991A85C1C7B599000B6C289 /* CustomerRepository.h */,
-				A991A85D1C7B599000B6C289 /* CustomerRepository.m */,
 				A991A8561C7B1BE600B6C289 /* Trip.h */,
 				A991A8571C7B1BE600B6C289 /* Trip.m */,
 				A991A85F1C7B59A700B6C289 /* TripRepository.h */,
@@ -345,7 +340,6 @@
 				A991A84E1C7B0CE400B6C289 /* UICKeyChainStore.m in Sources */,
 				A991A8551C7B1BD800B6C289 /* Customer.m in Sources */,
 				A991A8581C7B1BE600B6C289 /* Trip.m in Sources */,
-				A991A85E1C7B599000B6C289 /* CustomerRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>  // for CLLocation
 
 #import "SLAdapter.h"
 
@@ -25,7 +26,7 @@ extern NSString *SLObjectInvalidRepositoryDescription;
 @interface SLObject : NSObject
 
 /** The SLRepository defining the type of this object. */
-@property (readonly, nonatomic, weak) SLRepository *repository;
+@property (readonly, nonatomic, strong) SLRepository *repository;
 
 /**
  * The complete set of parameters to be used to identify/create this object on
@@ -71,6 +72,91 @@ extern NSString *SLObjectInvalidRepositoryDescription;
           parameters:(NSDictionary *)parameters
              success:(SLSuccessBlock)success
              failure:(SLFailureBlock)failure;
+
+/**
+ * Invokes a remotable method exposed within instances of this class on the
+ * server.
+ *
+ * @see SLAdapter::invokeInstanceMethod:constructorParameters:parameters:success:failure:
+ *
+ * @param name        The method to invoke (without the prototype), e.g.
+ *                    `doSomething`.
+ * @param parameters  The parameters to invoke with.
+ * @param bodyParameters  The parameters that get JSON encoded and put into
+ *                    the message body when the verb is POST or PUT.
+ * @param success     An SLSuccessBlock to be executed when the invocation
+ *                    succeeds.
+ * @param failure     An SLFailureBlock to be executed when the invocation
+ *                    fails.
+ */
+- (void)invokeMethod:(NSString *)name
+          parameters:(NSDictionary *)parameters
+      bodyParameters:(NSDictionary *)bodyParameters
+             success:(SLSuccessBlock)success
+             failure:(SLFailureBlock)failure;
+
+/**
+ * Invokes a remotable method exposed within instances of this class on the
+ * server.
+ *
+ * @see SLAdapter::invokeInstanceMethod:constructorParameters:parameters:outputStream:success:failure:
+ *
+ * @param name          The method to invoke (without the prototype), e.g.
+ *                      `doSomething`.
+ * @param parameters    The parameters to invoke with.
+ * @param outputStream  The stream to which all the response data goes.
+ * @param success       An SLSuccessBlock to be executed when the invocation
+ *                      succeeds.
+ * @param failure       An SLFailureBlock to be executed when the invocation
+ *                      fails.
+ */
+- (void)invokeMethod:(NSString *)name
+          parameters:(NSDictionary *)parameters
+        outputStream:(NSOutputStream *)outputStream
+             success:(SLSuccessBlock)success
+             failure:(SLFailureBlock)failure;
+
+/**
+ * Converts encoded Date value to an NSDate object following the argument encoding rule.
+ *
+ * @param value     The argument value to be converted.
+ */
++ (NSDate *)dateFromEncodedArgument:(NSDictionary *)value;
+
+/**
+ * Converts encoded Buffer value to an NSData object following the argument encoding rule.
+ *
+ * @param value     The argument value to be converted.
+ */
++ (NSData *)dataFromEncodedArgument:(NSDictionary *)value;
+
+/**
+ * Converts encoded GeoPoint value to a CLLocation object following the argument encoding rule.
+ *
+ * @param value     The argument value to be converted.
+ */
++ (CLLocation *)locationFromEncodedArgument:(NSDictionary *)value;
+
+/**
+ * Converts encoded Date value to an NSDate object following the property encoding rule.
+ *
+ * @param value     The property value to be converted.
+ */
++ (NSDate *)dateFromEncodedProperty:(NSString *)value;
+
+/**
+ * Converts encoded Buffer value to an NSData object following the property encoding rule.
+ *
+ * @param value     The property value to be converted.
+ */
++ (NSMutableData *)dataFromEncodedProperty:(NSDictionary *)value;
+
+/**
+ * Converts encoded GeoPoint value to a CLLocation object following the property encoding rule.
+ *
+ * @param value     The property value to be converted.
+ */
++ (CLLocation *)locationFromEncodedProperty:(NSDictionary *)value;
 
 @end
 
@@ -129,6 +215,49 @@ extern NSString *SLObjectInvalidRepositoryDescription;
  */
 - (void)invokeStaticMethod:(NSString *)name
                 parameters:(NSDictionary *)parameters
+                   success:(SLSuccessBlock)success
+                   failure:(SLFailureBlock)failure;
+
+/**
+ * Invokes a remotable method exposed statically within this class on the
+ * server.
+ *
+ * @see SLAdapter::invokeStaticMethod:parameters:success:failure:
+ *
+ * @param name        The method to invoke (without the class name), e.g.
+ *                    `doSomething`.
+ * @param parameters  The parameters to invoke with.
+ * @param bodyParameters  The parameters that get JSON encoded and put into
+ *                    the message body when the verb is POST or PUT.
+ * @param success     An SLSuccessBlock to be executed when the invocation
+ *                    succeeds.
+ * @param failure     An SLFailureBlock to be executed when the invocation
+ *                    fails.
+ */
+- (void)invokeStaticMethod:(NSString *)name
+                parameters:(NSDictionary *)parameters
+            bodyParameters:(NSDictionary *)bodyParameters
+                   success:(SLSuccessBlock)success
+                   failure:(SLFailureBlock)failure;
+
+/**
+ * Invokes a remotable method exposed statically within this class on the
+ * server.
+ *
+ * @see SLAdapter::invokeStaticMethod:parameters:outputStream:success:failure:
+ *
+ * @param name        The method to invoke (without the class name), e.g.
+ *                    `doSomething`.
+ * @param parameters  The parameters to invoke with.
+ * @param outputStream  The stream to which all the response data goes.
+ * @param success     An SLSuccessBlock to be executed when the invocation
+ *                    succeeds.
+ * @param failure     An SLFailureBlock to be executed when the invocation
+ *                    fails.
+ */
+- (void)invokeStaticMethod:(NSString *)name
+                parameters:(NSDictionary *)parameters
+              outputStream:(NSOutputStream *)outputStream
                    success:(SLSuccessBlock)success
                    failure:(SLFailureBlock)failure;
 
