@@ -78,8 +78,7 @@
     }else{
         nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];
     }
-    NSArray * newViewControllers = [NSArray arrayWithObjects:nextViewController,nil];
-    [mainNavigation setViewControllers:newViewControllers];
+    [mainNavigation pushViewController:nextViewController animated:YES];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

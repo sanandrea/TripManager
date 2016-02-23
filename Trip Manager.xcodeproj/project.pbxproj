@@ -26,6 +26,7 @@
 		A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8601C7B59A700B6C289 /* TripRepository.m */; };
 		A991A8641C7C5FF600B6C289 /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8631C7C5FF600B6C289 /* TripViewController.m */; };
 		A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8661C7C626300B6C289 /* RoleMapping.m */; };
+		A991A86A1C7C884E00B6C289 /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8691C7C884E00B6C289 /* TripDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		A991A8631C7C5FF600B6C289 /* TripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewController.m; sourceTree = "<group>"; };
 		A991A8651C7C626300B6C289 /* RoleMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleMapping.h; sourceTree = "<group>"; };
 		A991A8661C7C626300B6C289 /* RoleMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleMapping.m; sourceTree = "<group>"; };
+		A991A8681C7C884E00B6C289 /* TripDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
+		A991A8691C7C884E00B6C289 /* TripDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				A991A8141C7B088F00B6C289 /* UserViewController.m */,
 				A991A8621C7C5FF600B6C289 /* TripViewController.h */,
 				A991A8631C7C5FF600B6C289 /* TripViewController.m */,
+				A991A8681C7C884E00B6C289 /* TripDetailViewController.h */,
+				A991A8691C7C884E00B6C289 /* TripDetailViewController.m */,
 				A991A8161C7B088F00B6C289 /* DetailViewController.h */,
 				A991A8171C7B088F00B6C289 /* DetailViewController.m */,
 				A991A8191C7B088F00B6C289 /* Main.storyboard */,
@@ -343,6 +348,7 @@
 				A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */,
 				A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */,
 				A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */,
+				A991A86A1C7C884E00B6C289 /* TripDetailViewController.m in Sources */,
 				A991A8641C7C5FF600B6C289 /* TripViewController.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
