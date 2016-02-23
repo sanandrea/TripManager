@@ -8,6 +8,7 @@
 
 #import "UserViewController.h"
 #import "DetailViewController.h"
+#import "UIImage+FontAwesome.h"
 
 @interface UserViewController ()
 
@@ -26,6 +27,13 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    UIImage *icon = [UIImage imageWithIcon:@"fa-sign-out"
+                           backgroundColor:[UIColor clearColor]
+                                 iconColor:[UIColor redColor]
+                                  fontSize:18];
+    [self.logout setBackButtonBackgroundImage:icon
+                                     forState:UIControlStateNormal
+                                   barMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

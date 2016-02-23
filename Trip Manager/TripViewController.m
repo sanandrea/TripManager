@@ -7,12 +7,33 @@
 //
 
 #import "TripViewController.h"
+#import "UIImage+FontAwesome.h"
+#import "NSString+FontAwesome.h"
+#import "APConstants.h"
 
 @interface TripViewController ()
-
+@property (strong,nonatomic) IBOutlet UIBarButtonItem *addTrip;
 @end
 
 @implementation TripViewController
+
+- (void)customizeToolbar {
+    [self.logout setTitleTextAttributes:@{
+                                               NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                               NSForegroundColorAttributeName: self.view.tintColor
+                                               } forState:UIControlStateNormal];
+    [self.logout setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-sign-out"]];
+    [self.editEntries setTitleTextAttributes:@{
+                                               NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                               NSForegroundColorAttributeName: self.view.tintColor
+                                               } forState:UIControlStateNormal];
+    [self.editEntries setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-pencil-square-o"]];
+    [self.planner setTitleTextAttributes:@{
+                                           NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                           NSForegroundColorAttributeName: self.view.tintColor
+                                           } forState:UIControlStateNormal];
+    [self.planner setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"]];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -20,8 +41,8 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self customizeToolbar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,5 +115,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+#pragma mark - IBActions
+- (IBAction)logoutAction:(id)sender {
+}
 
+- (IBAction)editAction:(id)sender {
+}
+
+- (IBAction)plannerAction:(id)sender {
+}
 @end

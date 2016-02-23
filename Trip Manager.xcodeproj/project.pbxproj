@@ -30,6 +30,11 @@
 		A991A8711C7C8E6A00B6C289 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8701C7C8E6A00B6C289 /* DateCell.m */; };
 		A991A8741C7C8E7B00B6C289 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8731C7C8E7B00B6C289 /* CommentCell.m */; };
 		A991A8781C7C92D600B6C289 /* TripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8771C7C92D600B6C289 /* TripCell.m */; };
+		A991A8831C7CA52600B6C289 /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A87C1C7CA52600B6C289 /* FAImageView.m */; };
+		A991A8841C7CA52600B6C289 /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A87E1C7CA52600B6C289 /* NSString+FontAwesome.m */; };
+		A991A8851C7CA52600B6C289 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8801C7CA52600B6C289 /* UIFont+FontAwesome.m */; };
+		A991A8861C7CA52600B6C289 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8821C7CA52600B6C289 /* UIImage+FontAwesome.m */; };
+		A991A8871C7CAB5B00B6C289 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A991A8791C7CA4D300B6C289 /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +100,15 @@
 		A991A8751C7C903F00B6C289 /* CellDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellDataProvider.h; sourceTree = "<group>"; };
 		A991A8761C7C92D600B6C289 /* TripCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripCell.h; sourceTree = "<group>"; };
 		A991A8771C7C92D600B6C289 /* TripCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripCell.m; sourceTree = "<group>"; };
+		A991A8791C7CA4D300B6C289 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
+		A991A87B1C7CA52600B6C289 /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
+		A991A87C1C7CA52600B6C289 /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
+		A991A87D1C7CA52600B6C289 /* NSString+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FontAwesome.h"; sourceTree = "<group>"; };
+		A991A87E1C7CA52600B6C289 /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
+		A991A87F1C7CA52600B6C289 /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
+		A991A8801C7CA52600B6C289 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
+		A991A8811C7CA52600B6C289 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
+		A991A8821C7CA52600B6C289 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +190,7 @@
 		A991A80D1C7B088F00B6C289 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A991A8791C7CA4D300B6C289 /* fontawesome-webfont.ttf */,
 				A991A80E1C7B088F00B6C289 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -227,6 +242,7 @@
 		A991A86B1C7C8E2F00B6C289 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				A991A87A1C7CA52600B6C289 /* FontAwesome */,
 				A991A8751C7C903F00B6C289 /* CellDataProvider.h */,
 				A991A86C1C7C8E4F00B6C289 /* DestinationCell.h */,
 				A991A86D1C7C8E4F00B6C289 /* DestinationCell.m */,
@@ -238,6 +254,21 @@
 				A991A8771C7C92D600B6C289 /* TripCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		A991A87A1C7CA52600B6C289 /* FontAwesome */ = {
+			isa = PBXGroup;
+			children = (
+				A991A87B1C7CA52600B6C289 /* FAImageView.h */,
+				A991A87C1C7CA52600B6C289 /* FAImageView.m */,
+				A991A87D1C7CA52600B6C289 /* NSString+FontAwesome.h */,
+				A991A87E1C7CA52600B6C289 /* NSString+FontAwesome.m */,
+				A991A87F1C7CA52600B6C289 /* UIFont+FontAwesome.h */,
+				A991A8801C7CA52600B6C289 /* UIFont+FontAwesome.m */,
+				A991A8811C7CA52600B6C289 /* UIImage+FontAwesome.h */,
+				A991A8821C7CA52600B6C289 /* UIImage+FontAwesome.m */,
+			);
+			path = FontAwesome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A991A8871C7CAB5B00B6C289 /* fontawesome-webfont.ttf in Resources */,
 				A991A8201C7B088F00B6C289 /* LaunchScreen.storyboard in Resources */,
 				A991A81D1C7B088F00B6C289 /* Assets.xcassets in Resources */,
 				A991A81B1C7B088F00B6C289 /* Main.storyboard in Resources */,
@@ -372,11 +404,15 @@
 			files = (
 				A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */,
 				A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */,
+				A991A8841C7CA52600B6C289 /* NSString+FontAwesome.m in Sources */,
 				A991A86E1C7C8E4F00B6C289 /* DestinationCell.m in Sources */,
+				A991A8831C7CA52600B6C289 /* FAImageView.m in Sources */,
 				A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */,
 				A991A8781C7C92D600B6C289 /* TripCell.m in Sources */,
 				A991A86A1C7C884E00B6C289 /* TripDetailViewController.m in Sources */,
+				A991A8861C7CA52600B6C289 /* UIImage+FontAwesome.m in Sources */,
 				A991A8641C7C5FF600B6C289 /* TripViewController.m in Sources */,
+				A991A8851C7CA52600B6C289 /* UIFont+FontAwesome.m in Sources */,
 				A991A8711C7C8E6A00B6C289 /* DateCell.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,

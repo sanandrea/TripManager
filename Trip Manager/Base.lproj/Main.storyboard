@@ -117,10 +117,15 @@
         <!--Master-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
-                <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
+                <navigationController title="Master" toolbarHidden="NO" id="RMx-3f-FxP" sceneMemberID="viewController">
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="13Z-Uz-dYH">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
             </objects>
@@ -174,8 +179,16 @@
                             <outlet property="delegate" destination="7bK-jq-Zjz" id="RA6-mI-bju"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gN6-cp-jb6"/>
+                        <barButtonItem title="Item" id="IpY-q7-U2r"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lCJ-Kn-2ZD"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="logout" destination="IpY-q7-U2r" id="6KQ-jn-l08"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
@@ -204,8 +217,32 @@
                             <outlet property="delegate" destination="ZWi-2w-id9" id="2ZG-LB-mtb"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="49e-ZK-zzZ"/>
+                        <barButtonItem title="Item" id="zm6-RK-DJ9">
+                            <connections>
+                                <action selector="logoutAction:" destination="ZWi-2w-id9" id="22a-mq-ZRq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Bhy-LV-HuK"/>
+                        <barButtonItem title="Item" id="Ghg-ah-oVC">
+                            <connections>
+                                <action selector="editAction:" destination="ZWi-2w-id9" id="Gta-M8-5GB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="ok6-7o-qFT"/>
+                        <barButtonItem title="Item" id="Xht-Ig-QPS">
+                            <connections>
+                                <action selector="plannerAction:" destination="ZWi-2w-id9" id="wrG-4T-oTZ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="gxR-TA-daO"/>
+                    </toolbarItems>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="editEntries" destination="Ghg-ah-oVC" id="XoV-tL-7zl"/>
+                        <outlet property="logout" destination="zm6-RK-DJ9" id="VEJ-8Y-20c"/>
+                        <outlet property="planner" destination="Xht-Ig-QPS" id="Ng9-eE-yJ9"/>
                         <segue destination="vC3-pB-5Vb" kind="showDetail" identifier="showTripInfo" id="tWi-JV-cgj"/>
                     </connections>
                 </tableViewController>

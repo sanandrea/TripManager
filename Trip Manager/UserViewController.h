@@ -13,7 +13,7 @@
 @interface UserViewController : UITableViewController
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-
+@property (strong,nonatomic) IBOutlet UIBarButtonItem *logout;
 
 @end
 
