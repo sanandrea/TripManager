@@ -23,10 +23,13 @@
 		A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8511C7B18ED00B6C289 /* APConstants.m */; };
 		A991A8551C7B1BD800B6C289 /* Customer.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8541C7B1BD800B6C289 /* Customer.m */; };
 		A991A8581C7B1BE600B6C289 /* Trip.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8571C7B1BE600B6C289 /* Trip.m */; };
-		A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8601C7B59A700B6C289 /* TripRepository.m */; };
 		A991A8641C7C5FF600B6C289 /* TripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8631C7C5FF600B6C289 /* TripViewController.m */; };
 		A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8661C7C626300B6C289 /* RoleMapping.m */; };
 		A991A86A1C7C884E00B6C289 /* TripDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8691C7C884E00B6C289 /* TripDetailViewController.m */; };
+		A991A86E1C7C8E4F00B6C289 /* DestinationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A86D1C7C8E4F00B6C289 /* DestinationCell.m */; };
+		A991A8711C7C8E6A00B6C289 /* DateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8701C7C8E6A00B6C289 /* DateCell.m */; };
+		A991A8741C7C8E7B00B6C289 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8731C7C8E7B00B6C289 /* CommentCell.m */; };
+		A991A8781C7C92D600B6C289 /* TripCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8771C7C92D600B6C289 /* TripCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,14 +80,21 @@
 		A991A8541C7B1BD800B6C289 /* Customer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Customer.m; sourceTree = "<group>"; };
 		A991A8561C7B1BE600B6C289 /* Trip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trip.h; sourceTree = "<group>"; };
 		A991A8571C7B1BE600B6C289 /* Trip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trip.m; sourceTree = "<group>"; };
-		A991A85F1C7B59A700B6C289 /* TripRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripRepository.h; sourceTree = "<group>"; };
-		A991A8601C7B59A700B6C289 /* TripRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripRepository.m; sourceTree = "<group>"; };
 		A991A8621C7C5FF600B6C289 /* TripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripViewController.h; sourceTree = "<group>"; };
 		A991A8631C7C5FF600B6C289 /* TripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripViewController.m; sourceTree = "<group>"; };
 		A991A8651C7C626300B6C289 /* RoleMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoleMapping.h; sourceTree = "<group>"; };
 		A991A8661C7C626300B6C289 /* RoleMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoleMapping.m; sourceTree = "<group>"; };
 		A991A8681C7C884E00B6C289 /* TripDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripDetailViewController.h; sourceTree = "<group>"; };
 		A991A8691C7C884E00B6C289 /* TripDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripDetailViewController.m; sourceTree = "<group>"; };
+		A991A86C1C7C8E4F00B6C289 /* DestinationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DestinationCell.h; sourceTree = "<group>"; };
+		A991A86D1C7C8E4F00B6C289 /* DestinationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DestinationCell.m; sourceTree = "<group>"; };
+		A991A86F1C7C8E6A00B6C289 /* DateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateCell.h; sourceTree = "<group>"; };
+		A991A8701C7C8E6A00B6C289 /* DateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateCell.m; sourceTree = "<group>"; };
+		A991A8721C7C8E7B00B6C289 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		A991A8731C7C8E7B00B6C289 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		A991A8751C7C903F00B6C289 /* CellDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellDataProvider.h; sourceTree = "<group>"; };
+		A991A8761C7C92D600B6C289 /* TripCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TripCell.h; sourceTree = "<group>"; };
+		A991A8771C7C92D600B6C289 /* TripCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +150,7 @@
 		A991A80C1C7B088F00B6C289 /* Trip Manager */ = {
 			isa = PBXGroup;
 			children = (
+				A991A86B1C7C8E2F00B6C289 /* view */,
 				A991A84F1C7B18D800B6C289 /* model */,
 				A991A8101C7B088F00B6C289 /* AppDelegate.h */,
 				A991A8111C7B088F00B6C289 /* AppDelegate.m */,
@@ -207,12 +218,26 @@
 				A991A8541C7B1BD800B6C289 /* Customer.m */,
 				A991A8561C7B1BE600B6C289 /* Trip.h */,
 				A991A8571C7B1BE600B6C289 /* Trip.m */,
-				A991A85F1C7B59A700B6C289 /* TripRepository.h */,
-				A991A8601C7B59A700B6C289 /* TripRepository.m */,
 				A991A8651C7C626300B6C289 /* RoleMapping.h */,
 				A991A8661C7C626300B6C289 /* RoleMapping.m */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		A991A86B1C7C8E2F00B6C289 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A991A8751C7C903F00B6C289 /* CellDataProvider.h */,
+				A991A86C1C7C8E4F00B6C289 /* DestinationCell.h */,
+				A991A86D1C7C8E4F00B6C289 /* DestinationCell.m */,
+				A991A86F1C7C8E6A00B6C289 /* DateCell.h */,
+				A991A8701C7C8E6A00B6C289 /* DateCell.m */,
+				A991A8721C7C8E7B00B6C289 /* CommentCell.h */,
+				A991A8731C7C8E7B00B6C289 /* CommentCell.m */,
+				A991A8761C7C92D600B6C289 /* TripCell.h */,
+				A991A8771C7C92D600B6C289 /* TripCell.m */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,14 +372,17 @@
 			files = (
 				A991A8121C7B088F00B6C289 /* AppDelegate.m in Sources */,
 				A991A8521C7B18ED00B6C289 /* APConstants.m in Sources */,
+				A991A86E1C7C8E4F00B6C289 /* DestinationCell.m in Sources */,
 				A991A8151C7B088F00B6C289 /* UserViewController.m in Sources */,
+				A991A8781C7C92D600B6C289 /* TripCell.m in Sources */,
 				A991A86A1C7C884E00B6C289 /* TripDetailViewController.m in Sources */,
 				A991A8641C7C5FF600B6C289 /* TripViewController.m in Sources */,
+				A991A8711C7C8E6A00B6C289 /* DateCell.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
 				A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */,
 				A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */,
-				A991A8611C7B59A700B6C289 /* TripRepository.m in Sources */,
+				A991A8741C7C8E7B00B6C289 /* CommentCell.m in Sources */,
 				A991A84E1C7B0CE400B6C289 /* UICKeyChainStore.m in Sources */,
 				A991A8551C7B1BD800B6C289 /* Customer.m in Sources */,
 				A991A8581C7B1BE600B6C289 /* Trip.m in Sources */,

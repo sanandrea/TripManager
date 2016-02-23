@@ -7,12 +7,16 @@
 //
 
 #import "TripDetailViewController.h"
+#import "CellDataProvider.h"
+
+//custom cells
+#import "CommentCell.h"
+#import "DateCell.h"
+#import "DestinationCell.h"
 
 #define kPickerAnimationDuration    0.40   // duration for the animation to slide the date picker into view
 #define kDatePickerTag              99     // view tag identifiying the date picker view
 
-#define kTitleKey       @"title"   // key for obtaining the data source item's title
-#define kDateKey        @"date"    // key for obtaining the data source item's date value
 
 // keep track of which rows have date cells
 #define kDateStartRow   1
@@ -28,7 +32,6 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 
 @interface TripDetailViewController ()
 
-@property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 // keep track which indexPath points to the cell with UIDatePicker
@@ -52,15 +55,6 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 {
     [super viewDidLoad];
     
-    // setup our data source
-    NSMutableDictionary *itemOne = [@{ kTitleKey : @"Tap a cell to change its date:" } mutableCopy];
-    NSMutableDictionary *itemTwo = [@{ kTitleKey : @"Start Date",
-                                       kDateKey : [NSDate date] } mutableCopy];
-    NSMutableDictionary *itemThree = [@{ kTitleKey : @"End Date",
-                                        kDateKey : [NSDate date] } mutableCopy];
-    NSMutableDictionary *itemFour = [@{ kTitleKey : @"(other item1)" } mutableCopy];
-    NSMutableDictionary *itemFive = [@{ kTitleKey : @"(other item2)" } mutableCopy];
-    self.dataArray = @[itemOne, itemTwo, itemThree, itemFour, itemFive];
     
     self.dateFormatter = [[NSDateFormatter alloc] init];
     [self.dateFormatter setDateStyle:NSDateFormatterShortStyle];    // show short-style date format
@@ -126,15 +120,19 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 {
     if (self.datePickerIndexPath != nil)
     {
+        NSIndexPath *sourceIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:0];
         UITableViewCell *associatedDatePickerCell = [self.tableView cellForRowAtIndexPath:self.datePickerIndexPath];
         
         UIDatePicker *targetedDatePicker = (UIDatePicker *)[associatedDatePickerCell viewWithTag:kDatePickerTag];
-        if (targetedDatePicker != nil)
-        {
-            // we found a UIDatePicker in this cell, so update it's date value
-            //
-            NSDictionary *itemData = self.dataArray[self.datePickerIndexPath.row - 1];
-            [targetedDatePicker setDate:[itemData valueForKey:kDateKey] animated:NO];
+        
+        if (targetedDatePicker != nil){
+            UITableViewCell *sourceCell = (UITableViewCell*)[self.tableView cellForRowAtIndexPath:sourceIndexPath];
+            if ([sourceCell isKindOfClass:[DateCell class]]) {
+                DateCell *cell = (DateCell*)sourceCell;
+                if(cell.date != nil){
+                    [targetedDatePicker setDate:cell.date animated:NO];
+                }
+            }
         }
     }
 }
@@ -171,7 +169,35 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
     
     return hasDate;
 }
+#pragma mark - Utility
 
+- (NSString*) cellIdentifierForIndexPath:(NSIndexPath*)indexPath{
+    NSInteger row = [indexPath row];
+    if ([self indexPathHasPicker:indexPath]){
+        // the indexPath is the one containing the inline date picker
+        return kDatePickerID;     // the current/opened date picker cell
+    }
+    if (row == 0){
+        return kDestinationCell;
+    }
+    if ([self hasInlineDatePicker]) {
+        if (self.datePickerIndexPath.row > row) {
+            return kDateCellID;
+        }else if (row == 4){
+            return kCommentCell;
+        }else if (row == 3){
+            return kDateCellID;
+        }
+    }else{
+        if (row == 1 || row == 2){
+            return kDateCellID;
+        }else if (row == 3){
+            return kCommentCell;
+        }
+    }
+    
+    return @"";
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -182,65 +208,21 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([self hasInlineDatePicker])
-    {
-        // we have a date picker, so allow for it in the number of rows in this section
-        NSInteger numRows = self.dataArray.count;
-        return ++numRows;
-    }
-    
-    return self.dataArray.count;
+    return [self hasInlineDatePicker] ? 5 : 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = nil;
-#warning TODO
-    NSString *cellID;
+
+    NSString *cellID = [self cellIdentifierForIndexPath:indexPath];
     
-    if ([self indexPathHasPicker:indexPath])
-    {
-        // the indexPath is the one containing the inline date picker
-        cellID = kDatePickerID;     // the current/opened date picker cell
-    }
-    else if ([self indexPathHasDate:indexPath])
-    {
-        // the indexPath is one that contains the date information
-        cellID = kDateCellID;       // the start/end date cells
-    }
 
     cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
-    if (indexPath.row == 0)
-    {
-        // we decide here that first cell in the table is not selectable (it's just an indicator)
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
     
-    // if we have a date picker open whose cell is above the cell we want to update,
-    // then we have one more cell than the model allows
-    //
-    NSInteger modelRow = indexPath.row;
-    if (self.datePickerIndexPath != nil && self.datePickerIndexPath.row <= indexPath.row)
-    {
-        modelRow--;
-    }
-    
-    NSDictionary *itemData = self.dataArray[modelRow];
-    
-    // proceed to configure our cell
-    if ([cellID isEqualToString:kDateCellID])
-    {
-        // we have either start or end date cells, populate their date field
-        //
-        cell.textLabel.text = [itemData valueForKey:kTitleKey];
-        cell.detailTextLabel.text = [self.dateFormatter stringFromDate:[itemData valueForKey:kDateKey]];
-    }
-    else if ([cellID isEqualToString:kDestinationCell])
-    {
-        // this cell is a non-date cell, just assign it's text label
-        //
-        cell.textLabel.text = [itemData valueForKey:kTitleKey];
+    if ([cell respondsToSelector:@selector(customizeWithData:)] && self.isEditMode) {
+        [((id<CellDataProvider>)cell) customizeWithData:self.trip];
     }
     
 	return cell;
@@ -351,21 +333,15 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
         //
         targetedCellIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:0];
     }
-    else
-    {
-        // external date picker: update the current "selected" cell's date
-        targetedCellIndexPath = [self.tableView indexPathForSelectedRow];
-    }
     
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:targetedCellIndexPath];
+    
+    DateCell *cell = (DateCell*) [self.tableView cellForRowAtIndexPath:targetedCellIndexPath];
     UIDatePicker *targetedDatePicker = sender;
     
-    // update our data model
-    NSMutableDictionary *itemData = self.dataArray[targetedCellIndexPath.row];
-    [itemData setValue:targetedDatePicker.date forKey:kDateKey];
     
     // update the cell's date string
-    cell.detailTextLabel.text = [self.dateFormatter stringFromDate:targetedDatePicker.date];
+    cell.dateValue.text = [self.dateFormatter stringFromDate:targetedDatePicker.date];
+    cell.date = targetedDatePicker.date;
 }
 
 

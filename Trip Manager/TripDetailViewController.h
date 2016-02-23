@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Trip.h"
+#import "APConstants.h"
 
 @interface TripDetailViewController : UITableViewController
+
+@property (nonatomic) BOOL isEditMode;
+@property (strong, nonatomic) Trip* trip;
 
 @end

@@ -14,3 +14,7 @@
 @property (nonatomic, copy) NSString *enddate;
 @property (nonatomic, copy) NSString *comment;
 @end
+
+@interface TripRepository : LBModelRepository
++ (instancetype)repository;
+@end

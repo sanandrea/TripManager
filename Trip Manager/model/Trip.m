@@ -15,3 +15,9 @@
     
 }
 @end
+
+@implementation TripRepository
++ (instancetype)repository {
+    return [self repositoryWithClassName:@"trip"];
+}
+@end
