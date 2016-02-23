@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface TripViewController : UITableViewController
+
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *planner;
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *logout;
-@property (strong,nonatomic) IBOutlet UIBarButtonItem *editEntries;
+@property (strong,nonatomic) IBOutlet UIBarButtonItem *addEntry;
 
 - (IBAction)logoutAction:(id)sender;
-- (IBAction)editAction:(id)sender;
+- (IBAction)addAction:(id)sender;
 - (IBAction)plannerAction:(id)sender;
 
 

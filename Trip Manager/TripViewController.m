@@ -12,28 +12,9 @@
 #import "APConstants.h"
 
 @interface TripViewController ()
-@property (strong,nonatomic) IBOutlet UIBarButtonItem *addTrip;
 @end
 
 @implementation TripViewController
-
-- (void)customizeToolbar {
-    [self.logout setTitleTextAttributes:@{
-                                               NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
-                                               NSForegroundColorAttributeName: self.view.tintColor
-                                               } forState:UIControlStateNormal];
-    [self.logout setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-sign-out"]];
-    [self.editEntries setTitleTextAttributes:@{
-                                               NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
-                                               NSForegroundColorAttributeName: self.view.tintColor
-                                               } forState:UIControlStateNormal];
-    [self.editEntries setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-pencil-square-o"]];
-    [self.planner setTitleTextAttributes:@{
-                                           NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
-                                           NSForegroundColorAttributeName: self.view.tintColor
-                                           } forState:UIControlStateNormal];
-    [self.planner setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"]];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -115,11 +96,33 @@
     // Pass the selected object to the new view controller.
 }
 */
-#pragma mark - IBActions
-- (IBAction)logoutAction:(id)sender {
+
+#pragma mark - UI customization
+
+- (void)customizeToolbar {
+    [self.logout setTitleTextAttributes:@{
+                                          NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                          NSForegroundColorAttributeName: self.view.tintColor
+                                          } forState:UIControlStateNormal];
+    [self.logout setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-sign-out"]];
+    [self.addEntry setTitleTextAttributes:@{
+                                               NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                               NSForegroundColorAttributeName: self.view.tintColor
+                                               } forState:UIControlStateNormal];
+    [self.addEntry setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-plus"]];
+    [self.planner setTitleTextAttributes:@{
+                                           NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                           NSForegroundColorAttributeName: self.view.tintColor
+                                           } forState:UIControlStateNormal];
+    [self.planner setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"]];
 }
 
-- (IBAction)editAction:(id)sender {
+#pragma mark - IBActions
+- (IBAction)logoutAction:(id)sender {
+    
+}
+
+- (IBAction)addAction:(id)sender {
 }
 
 - (IBAction)plannerAction:(id)sender {
