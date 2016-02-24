@@ -49,9 +49,9 @@
         [mainNavigation setViewControllers:newViewControllers];
     }else{
         //left Navigation View Controller
-        Customer *customer = (Customer*)[[APConstants sharedInstance] getLoggedInUser];
+        UserRole role = ((APConstants*)[APConstants sharedInstance]).currentUserRole;
         UIViewController *nextViewController;
-        if (customer.role == kUserRoleAdmin || customer.role == kUserRoleManager) {
+        if (role == kUserRoleAdmin || role == kUserRoleManager) {
             nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"userViewController"];
         }else{
             nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];
@@ -74,9 +74,8 @@
     UIViewController *nextViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     //find logged in customer from repo
-    Customer *customer = (Customer*)[[APConstants sharedInstance] getLoggedInUser];
-    assert(customer);
-    if (customer.role == kUserRoleAdmin || customer.role == kUserRoleManager) {
+    UserRole role = ((APConstants*)[APConstants sharedInstance]).currentUserRole;
+    if (role == kUserRoleAdmin || role == kUserRoleManager) {
         nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"userViewController"];
     }else{
         nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];

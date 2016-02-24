@@ -36,20 +36,23 @@
 - (IBAction)goAction:(id)sender {
     CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
 #warning TODO
-    NSString *username = @"andi";
+    NSString *username = @"admin";
     NSString *password = @"test";
     Customer *customer = (Customer*)[crepo createUserWithUserName:username password:password];
     if (![self.registerSwitch isOn]) {
         [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
             ALog("Here %@", user);
-            [customer findRole];
-            [self.delegate loginCompletedSuccesfully];
+            [[APConstants sharedInstance] updateRoleWithUser:user on:^{
+                [self.delegate loginCompletedSuccesfully];
+            } when:CALLBACK_FAILURE_BLOCK];
         } failure:CALLBACK_FAILURE_BLOCK];
     }else{
         [customer saveWithSuccess:^{
             [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
                 ALog("Here %@", user);
-                [self.delegate loginCompletedSuccesfully];
+                [[APConstants sharedInstance] updateRoleWithUser:user on:^{
+                    [self.delegate loginCompletedSuccesfully];
+                } when:CALLBACK_FAILURE_BLOCK];
             } failure:CALLBACK_FAILURE_BLOCK];
         } failure:CALLBACK_FAILURE_BLOCK];
     }

@@ -8,6 +8,7 @@
 
 #import "APConstants.h"
 #import "Customer.h"
+#import "RoleMapping.h"
 
 NSString *const kSecurityTokenKey = @"integrated-services-token";
 NSString *const kSecurityUserNameKey = @"integrated-services-user";
@@ -49,6 +50,36 @@ static int randomLength = 6;
 }
 - (LBUser*) getLoggedInUser{
     return self.repository.cachedCurrentUser;
+}
+
+- (void) updateRoleWithUser:(LBUser*)user on:(APSuccessBlock)success when:(SLFailureBlock)failure{
+    if (![user valueForKey:@"id"]) {
+        NSDictionary *userInfo = @{
+                                   NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+                                   NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"User is not logged in", nil),
+                                   NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"call this with logged in user", nil)
+                                   };
+        NSError *error = [NSError errorWithDomain:@"APDomain"
+                                             code:-57
+                                         userInfo:userInfo];
+        failure(error);
+    }
+    LBRESTAdapter* adapter = [[APConstants sharedInstance] getCurrentAdapter];
+    RoleMappingRepository *repo = (RoleMappingRepository*)[adapter repositoryWithClass:[RoleMappingRepository class]];
+    
+    NSDictionary *filter = @{@"include":@"role",@"where":@{@"principalId":[user valueForKey:@"id"]}};
+    [repo findWithFilter:filter success:^(NSArray *roleMappings){
+        if ([roleMappings count] == 0) {
+            self.currentUserRole = kUserRoleDefault;
+        }
+        RoleMapping *rm = [roleMappings objectAtIndex:0];
+        if ([rm[@"role"][@"name"] isEqualToString:@"admin"]) {
+            self.currentUserRole = kUserRoleAdmin;
+        }else if ([rm[@"role"][@"name"] isEqualToString:@"manager"]) {
+            self.currentUserRole = kUserRoleManager;
+        }
+        success();
+    }failure:failure];
 }
 
 +(NSString*) randomUsername{

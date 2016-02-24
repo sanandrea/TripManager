@@ -11,10 +11,7 @@
 
 @interface Customer : LBUser
 
-@property (nonatomic, assign) UserRole role;
 @property (nonatomic, copy) NSArray* trips;
-
--(void) findRole;
 
 @end
 

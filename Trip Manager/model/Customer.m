@@ -7,15 +7,9 @@
 //
 
 #import "Customer.h"
+#import "RoleMapping.h"
 
 @implementation Customer
-
-
--(void) findRole{
-#warning TODO
-    self.role = kUserRoleDefault;
-    
-}
 
 @end
 

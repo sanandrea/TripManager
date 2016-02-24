@@ -23,6 +23,7 @@ typedef enum UserRole {
     kUserRoleAdmin
 } UserRole;
 
+typedef void (^APSuccessBlock)();
 
 @protocol LogoutHandlerProtocol <NSObject>
 
@@ -35,11 +36,14 @@ extern NSString *const kSecurityUserNameKey;
 extern NSString *const kKeyChainServiceURL;
 
 @interface APConstants : NSObject
+@property (nonatomic) UserRole currentUserRole;
 
 + (id) sharedInstance;
 - (LBRESTAdapter*) getCurrentAdapter;
 - (LBPersistedModelRepository*) getCustomerRepository;
 - (LBUser*) getLoggedInUser;
+- (void) updateRoleWithUser:(LBUser*)user on:(APSuccessBlock)success when:(SLFailureBlock)failure;
+
 
 +(NSString*) randomUsername;
 
