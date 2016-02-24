@@ -24,6 +24,12 @@ typedef enum UserRole {
 } UserRole;
 
 
+@protocol LogoutHandlerProtocol <NSObject>
+
+- (void) logoutUser;
+
+@end
+
 extern NSString *const kSecurityTokenKey;
 extern NSString *const kSecurityUserNameKey;
 extern NSString *const kKeyChainServiceURL;

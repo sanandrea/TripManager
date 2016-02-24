@@ -10,7 +10,6 @@
 #import "TripDetailViewController.h"
 #import "UICKeyChainStore.h"
 #import "LoginViewController.h"
-#import "APConstants.h"
 #import "Customer.h"
 
 @interface AppDelegate () <UISplitViewControllerDelegate,LoginDelegate>
@@ -82,7 +81,32 @@
     }else{
         nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"tripViewController"];
     }
+    /*
+    [mainNavigation popViewControllerAnimated:YES];
     [mainNavigation pushViewController:nextViewController animated:YES];
+    */
+    NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray: mainNavigation.viewControllers];
+    [allViewControllers removeObjectAtIndex:0];
+    [allViewControllers addObject:nextViewController];
+    [mainNavigation setViewControllers:allViewControllers animated:YES];
+}
+
+- (void) logoutUser{
+    CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
+    if (crepo.currentUserId == nil) {return;}
+    
+    [crepo logoutWithSuccess:^(){
+        // Override point for customization after application launch.
+        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+        UINavigationController *mainNavigation = [splitViewController.viewControllers firstObject];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"loginViewController"];
+        loginViewController.delegate = self;
+        NSArray *modifiedArray = @[loginViewController];
+        [mainNavigation setViewControllers:modifiedArray animated:YES];
+    } failure:CALLBACK_FAILURE_BLOCK];
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

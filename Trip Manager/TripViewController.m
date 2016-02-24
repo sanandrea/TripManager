@@ -183,7 +183,8 @@ const int DAY_SECONDS = 86400;
 
 #pragma mark - IBActions
 - (IBAction)logoutAction:(id)sender {
-    
+    id<LogoutHandlerProtocol> handler = (id<LogoutHandlerProtocol>)[[UIApplication sharedApplication] delegate];
+    [handler logoutUser];
 }
 
 - (IBAction)addAction:(id)sender {
