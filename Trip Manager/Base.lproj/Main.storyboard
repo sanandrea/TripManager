@@ -379,10 +379,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wR-Hg-Nj2">
-                                            <rect key="frame" x="8" y="11" width="60" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="90" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oUo-eo-gOE"/>
-                                                <constraint firstAttribute="width" constant="60" id="yjB-es-3LC"/>
+                                                <constraint firstAttribute="width" constant="90" id="yjB-es-3LC"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -401,7 +401,7 @@
                                     <constraints>
                                         <constraint firstItem="1wR-Hg-Nj2" firstAttribute="leading" secondItem="qQM-WG-bpO" secondAttribute="leading" constant="8" id="1c9-YS-J1B"/>
                                         <constraint firstItem="1wR-Hg-Nj2" firstAttribute="centerY" secondItem="qQM-WG-bpO" secondAttribute="centerY" id="2as-fw-sQX"/>
-                                        <constraint firstItem="RMg-C6-0Fo" firstAttribute="leading" secondItem="1wR-Hg-Nj2" secondAttribute="trailing" constant="8" id="Mtq-3W-1IP"/>
+                                        <constraint firstItem="RMg-C6-0Fo" firstAttribute="leading" secondItem="1wR-Hg-Nj2" secondAttribute="trailing" constant="-22" id="Mtq-3W-1IP"/>
                                         <constraint firstItem="RMg-C6-0Fo" firstAttribute="centerY" secondItem="1wR-Hg-Nj2" secondAttribute="centerY" id="Xsu-lE-b1g"/>
                                         <constraint firstAttribute="trailing" secondItem="RMg-C6-0Fo" secondAttribute="trailing" constant="8" id="u93-Eu-cWS"/>
                                     </constraints>
@@ -438,17 +438,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3d-ex-Nl3">
-                                            <rect key="frame" x="8" y="11" width="60" height="21"/>
+                                            <rect key="frame" x="8" y="11" width="90" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="Fgo-yj-W2O"/>
+                                                <constraint firstAttribute="width" constant="90" id="Fgo-yj-W2O"/>
                                                 <constraint firstAttribute="height" constant="21" id="mGB-X8-8RY"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yip-UC-C93">
-                                            <rect key="frame" x="76" y="7" width="516" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yip-UC-C93">
+                                            <rect key="frame" x="106" y="7" width="486" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="QOm-aA-phS"/>
                                             </constraints>
@@ -476,7 +476,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="yta-5S-91P">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2p2-VR-yZS"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="2p2-VR-yZS">
+                            <connections>
+                                <action selector="saveTrip:" destination="aJl-qC-Qs7" id="ORC-t8-EKQ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fjx-tj-VtN" userLabel="First Responder" sceneMemberID="firstResponder"/>

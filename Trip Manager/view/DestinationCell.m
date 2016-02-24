@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.destination.text = NSLocalizedString(@"Destination", @"destination label cell");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,6 +23,10 @@
 
 - (NSDictionary*) getKeyValueCouple{
     return @{@"destination": self.destination.text};
+}
+
+- (void) customizeWithData:(Trip*) trip{
+    self.destinationValue.text = trip.destination;
 }
 
 @end

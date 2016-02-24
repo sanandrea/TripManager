@@ -220,6 +220,14 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 
     cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     
+    if ([cellID isEqualToString:kDateCellID]) {
+        if ([indexPath row] == 1) {
+            ((DateCell*)cell).isStartDate = YES;
+        }else{
+            ((DateCell*)cell).isStartDate = NO;
+        }
+    }
+    
     
     if ([cell respondsToSelector:@selector(customizeWithData:)] && self.isEditMode) {
         [((id<CellDataProvider>)cell) customizeWithData:self.trip];
@@ -345,5 +353,22 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 }
 
 
+- (IBAction)saveTrip:(id)sender {
+    NSMutableDictionary *info;
+    
+    for (UITableViewCell *cell in self.tableView.visibleCells){
+        if ([cell respondsToSelector:@selector(getKeyValueCouple)]) {
+            id<CellDataProvider> f = (id<CellDataProvider>)cell;
+            [info addEntriesFromDictionary:[f getKeyValueCouple]];
+        }
+    }
+    if (self.trip == nil) {
+        TripRepository *trepo = (TripRepository*)[[[APConstants sharedInstance] getCurrentAdapter] repositoryWithClass:[TripRepository class]];
+        self.trip = (Trip*)[trepo modelWithDictionary:info];
+    }
+    [self.trip saveWithSuccess:^(){ALog("Saved ok");} failure:CALLBACK_FAILURE_BLOCK];
+    
+    
+}
 @end
 

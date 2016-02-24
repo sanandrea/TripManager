@@ -18,6 +18,6 @@
 
 @implementation TripRepository
 + (instancetype)repository {
-    return [self repositoryWithClassName:@"trip"];
+    return [self repositoryWithClassName:@"trips"];
 }
 @end

@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.comment.text = NSLocalizedString(@"Comment", @"Comment label cell");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -23,5 +24,9 @@
 - (NSDictionary*) getKeyValueCouple{
     return @{@"comment": self.comment.text};
 }
+- (void) customizeWithData:(Trip*) trip{
+    
+}
+
 
 @end

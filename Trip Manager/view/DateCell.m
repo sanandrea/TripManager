@@ -16,13 +16,16 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    self.dateLabel.text = self.isStartDate ? NSLocalizedString(@"Start Date", @"Start date label cell"): NSLocalizedString(@"End Date", @"End date label cell");
     // Configure the view for the selected state
 }
 
 - (NSDictionary*) getKeyValueCouple{
     NSString *key = self.isStartDate ? @"startdate" : @"enddate";
     return @{key : self.dateValue.text};
+}
+- (void) customizeWithData:(Trip*) trip{
+    
 }
 
 @end

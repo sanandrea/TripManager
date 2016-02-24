@@ -14,5 +14,6 @@
 
 @property (nonatomic) BOOL isEditMode;
 @property (strong, nonatomic) Trip* trip;
+- (IBAction)saveTrip:(id)sender;
 
 @end

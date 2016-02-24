@@ -8,10 +8,10 @@
 
 #import <LoopBack/LoopBack.h>
 
-@interface Trip : LBModel
+@interface Trip : LBPersistedModel
 @property (nonatomic, copy) NSString *destination;
-@property (nonatomic, copy) NSString *startdate;
-@property (nonatomic, copy) NSString *enddate;
+@property (nonatomic, copy) NSDate *startdate;
+@property (nonatomic, copy) NSDate *enddate;
 @property (nonatomic, copy) NSString *comment;
 @end
 

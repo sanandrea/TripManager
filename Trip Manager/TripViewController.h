@@ -14,9 +14,10 @@
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *logout;
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *addEntry;
 
+@property (strong,nonatomic) NSString *userId;
+
 - (IBAction)logoutAction:(id)sender;
 - (IBAction)addAction:(id)sender;
 - (IBAction)plannerAction:(id)sender;
-
 
 @end

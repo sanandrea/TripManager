@@ -10,6 +10,7 @@
 
 @implementation Customer
 
+
 -(void) findRole{
 #warning TODO
     self.role = kUserRoleDefault;
@@ -27,6 +28,14 @@
 + (instancetype)repository {
     return [self repositoryWithClassName:@"customers"];
 }
-
+- (SLRESTContract *)contract {
+    SLRESTContract *contract = [super contract];
+    
+    [contract addItem:[SLRESTContractItem itemWithPattern:[NSString stringWithFormat:@"/%@/:id/trips", self.className] verb:@"GET"]
+            forMethod:[NSString stringWithFormat:@"%@.trip-list", self.className]];
+    
+    
+    return contract;
+}
 
 @end
