@@ -13,6 +13,7 @@
 NSString *const kSecurityTokenKey = @"integrated-services-token";
 NSString *const kSecurityUserNameKey = @"integrated-services-user";
 NSString *const kKeyChainServiceURL = @"tripmanager.andipalo.com";
+NSString *const kLastUserRole = @"last-user-role";
 
 static NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
 static int randomLength = 6;
@@ -78,6 +79,10 @@ static int randomLength = 6;
         }else if ([rm[@"role"][@"name"] isEqualToString:@"manager"]) {
             self.currentUserRole = kUserRoleManager;
         }
+        [[NSUserDefaults standardUserDefaults] setValue:@(self.currentUserRole)
+                                                 forKey:kLastUserRole];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
         success();
     }failure:failure];
 }

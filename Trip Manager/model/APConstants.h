@@ -35,6 +35,8 @@ extern NSString *const kSecurityTokenKey;
 extern NSString *const kSecurityUserNameKey;
 extern NSString *const kKeyChainServiceURL;
 
+extern NSString *const kLastUserRole;
+
 @interface APConstants : NSObject
 @property (nonatomic) UserRole currentUserRole;
 

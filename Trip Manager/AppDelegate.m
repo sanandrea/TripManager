@@ -49,7 +49,7 @@
         [mainNavigation setViewControllers:newViewControllers];
     }else{
         //left Navigation View Controller
-        UserRole role = ((APConstants*)[APConstants sharedInstance]).currentUserRole;
+        UserRole role = [[[NSUserDefaults standardUserDefaults] objectForKey:kLastUserRole] intValue];
         UIViewController *nextViewController;
         if (role == kUserRoleAdmin || role == kUserRoleManager) {
             nextViewController = [storyboard instantiateViewControllerWithIdentifier:@"userViewController"];

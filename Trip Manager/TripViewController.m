@@ -44,6 +44,7 @@ const int DAY_SECONDS = 86400;
 }
 
 -(void) viewWillAppear:(BOOL)animated{
+    self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
     self.selectedTrip = nil;
     
@@ -59,7 +60,9 @@ const int DAY_SECONDS = 86400;
                 self.trips = (NSArray*) value;
                 [self.tableView reloadData];
             }failure:CALLBACK_FAILURE_BLOCK];
-        }failure:CALLBACK_FAILURE_BLOCK];
+        } failure:CALLBACK_FAILURE_BLOCK];
+        
+        
     }
 }
 

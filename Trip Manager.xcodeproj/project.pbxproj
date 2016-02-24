@@ -55,6 +55,7 @@
 		A991A8C51C7E0A8F00B6C289 /* M13ProgressViewSegmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B11C7E0A8F00B6C289 /* M13ProgressViewSegmentedBar.m */; };
 		A991A8C61C7E0A8F00B6C289 /* M13ProgressViewSegmentedRing.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B31C7E0A8F00B6C289 /* M13ProgressViewSegmentedRing.m */; };
 		A991A8C71C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B51C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m */; };
+		A991A8CA1C7E30D000B6C289 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8C91C7E30D000B6C289 /* UserCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +169,8 @@
 		A991A8B31C7E0A8F00B6C289 /* M13ProgressViewSegmentedRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewSegmentedRing.m; sourceTree = "<group>"; };
 		A991A8B41C7E0A8F00B6C289 /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		A991A8B51C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
+		A991A8C81C7E30D000B6C289 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		A991A8C91C7E30D000B6C289 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +318,8 @@
 				A991A8731C7C8E7B00B6C289 /* CommentCell.m */,
 				A991A8761C7C92D600B6C289 /* TripCell.h */,
 				A991A8771C7C92D600B6C289 /* TripCell.m */,
+				A991A8C81C7E30D000B6C289 /* UserCell.h */,
+				A991A8C91C7E30D000B6C289 /* UserCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
 				A991A8C21C7E0A8F00B6C289 /* M13ProgressViewPie.m in Sources */,
 				A991A88C1C7DE66C00B6C289 /* NSDate+TimeAgo.m in Sources */,
+				A991A8CA1C7E30D000B6C289 /* UserCell.m in Sources */,
 				A991A8C31C7E0A8F00B6C289 /* M13ProgressViewRadiative.m in Sources */,
 				A991A8C01C7E0A8F00B6C289 /* M13ProgressViewMetro.m in Sources */,
 				A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */,
