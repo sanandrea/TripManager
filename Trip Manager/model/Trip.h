@@ -15,6 +15,6 @@
 @property (nonatomic, copy) NSString *comment;
 @end
 
-@interface TripRepository : LBModelRepository
+@interface TripRepository : LBPersistedModelRepository
 + (instancetype)repository;
 @end

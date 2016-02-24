@@ -210,22 +210,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-qv-M8R">
-                                            <rect key="frame" x="8" y="11" width="120" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="sUF-C9-2uN"/>
-                                                <constraint firstAttribute="height" constant="21" id="ymX-65-geF"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="for 2 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLh-nu-rog">
-                                            <rect key="frame" x="136" y="11" width="122" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="122" id="7sI-hY-FCz"/>
-                                                <constraint firstAttribute="height" constant="21" id="G21-vA-GCJ"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="destination" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-qv-M8R">
+                                            <rect key="frame" x="8" y="0.0" width="120" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -250,16 +236,18 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="for 2 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLh-nu-rog">
+                                            <rect key="frame" x="8" y="22" width="122" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="WLh-nu-rog" firstAttribute="centerY" secondItem="jeN-kP-DOs" secondAttribute="centerY" id="4eE-4H-c8x"/>
-                                        <constraint firstItem="Hoc-qv-M8R" firstAttribute="centerY" secondItem="jeN-kP-DOs" secondAttribute="centerY" id="65R-rN-0Ro"/>
-                                        <constraint firstItem="Hoc-qv-M8R" firstAttribute="leading" secondItem="jeN-kP-DOs" secondAttribute="leading" constant="8" id="SKi-pt-4Sd"/>
                                         <constraint firstAttribute="trailing" secondItem="jDK-nZ-yus" secondAttribute="trailing" constant="8" id="Sn2-9Y-Io2"/>
                                         <constraint firstItem="jDK-nZ-yus" firstAttribute="centerY" secondItem="jeN-kP-DOs" secondAttribute="centerY" id="UbI-cA-wAA"/>
                                         <constraint firstItem="jDK-nZ-yus" firstAttribute="leading" secondItem="ZEp-pN-cKz" secondAttribute="trailing" constant="8" id="XCa-PA-Ajf"/>
                                         <constraint firstItem="ZEp-pN-cKz" firstAttribute="centerY" secondItem="jeN-kP-DOs" secondAttribute="centerY" id="ePe-3I-pbH"/>
-                                        <constraint firstItem="WLh-nu-rog" firstAttribute="leading" secondItem="Hoc-qv-M8R" secondAttribute="trailing" constant="8" id="qVh-ie-XLU"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -482,8 +470,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="tSD-rk-WQq" kind="unwind" identifier="unwindToMasterC" unwindAction="unwindToMasterC:" id="DMQ-Uc-a0B"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fjx-tj-VtN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tSD-rk-WQq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="709" y="129"/>
         </scene>

@@ -354,7 +354,7 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 
 
 - (IBAction)saveTrip:(id)sender {
-    NSMutableDictionary *info;
+    NSMutableDictionary *info = [[NSMutableDictionary alloc] init];
     
     for (UITableViewCell *cell in self.tableView.visibleCells){
         if ([cell respondsToSelector:@selector(getKeyValueCouple)]) {
@@ -366,9 +366,10 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
         TripRepository *trepo = (TripRepository*)[[[APConstants sharedInstance] getCurrentAdapter] repositoryWithClass:[TripRepository class]];
         self.trip = (Trip*)[trepo modelWithDictionary:info];
     }
-    [self.trip saveWithSuccess:^(){ALog("Saved ok");} failure:CALLBACK_FAILURE_BLOCK];
-    
-    
+    [self.trip saveWithSuccess:^(){
+        
+        [self performSegueWithIdentifier:@"unwindToMasterC" sender:self];
+    } failure:CALLBACK_FAILURE_BLOCK];
 }
 @end
 

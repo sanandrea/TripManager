@@ -12,11 +12,16 @@
 #import "NSString+FontAwesome.h"
 #import "APConstants.h"
 #import "Trip.h"
+#import "TripCell.h"
 #import "Customer.h"
+#import "NSDate+TimeAgo.h"
+
+const int DAY_SECONDS = 86400;
 
 @interface TripViewController ()
 @property (strong, nonatomic) NSArray* trips;
 @property (strong, nonatomic) Trip *selectedTrip;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @end
 
 @implementation TripViewController
@@ -30,13 +35,21 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self customizeToolbar];
     
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    
+    [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    [self.dateFormatter setLocale:enUSPOSIXLocale];
+    
     if (self.userId == nil) {
         //means that we arrived here from appdelegate
         //show trips for the loggedin customer
         CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
 
         [crepo findCurrentUserWithSuccess:^(LBUser *user){
-            [crepo invokeStaticMethod:@"trip-list" parameters:@{@"id" : crepo.currentUserId} success:^(id value){
+            NSDictionary *parameters = @{@"id" : crepo.currentUserId,@"filter":@{@"include":@"customer"}};
+            
+            [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
                   self.trips = (NSArray*) value;
                   [self.tableView reloadData];
             }failure:CALLBACK_FAILURE_BLOCK];
@@ -45,10 +58,10 @@
     
 }
 
--(void) viewWillAppear:(BOOL)animated{
-    self.selectedTrip = nil;
-    [super viewWillAppear:animated];
-}
+//-(void) viewWillAppear:(BOOL)animated{
+//    self.selectedTrip = nil;
+//    [super viewWillAppear:animated];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -56,9 +69,6 @@
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.trips count];
@@ -66,9 +76,26 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tripCell"
-                                                            forIndexPath:indexPath];
+    TripCell *cell = (TripCell*)[tableView dequeueReusableCellWithIdentifier:@"tripCell"
+                                                                forIndexPath:indexPath];
     
+    NSDictionary *cellData = [self.trips objectAtIndex:[indexPath row]];
+    
+    cell.destination.text = cellData[@"destination"];
+    
+    NSDate *startDate = [self.dateFormatter dateFromString:cellData[@"startdate"]];
+    NSTimeInterval interval = [startDate timeIntervalSinceNow];
+    int days = (int)interval/DAY_SECONDS;
+    if (interval > 0) {
+        cell.futureCounter.text = [NSString stringWithFormat:@"Starts in %d day%@",days,days == 1 ? @"" :@"s" ];
+    }else{
+        cell.futureCounter.text = [startDate timeAgo];
+    }
+    
+    if (self.userId == nil) {
+        cell.userIcon.hidden = YES;
+        cell.userName.hidden = YES;
+    }
     
     return cell;
 }
@@ -158,4 +185,9 @@
 
 - (IBAction)plannerAction:(id)sender {
 }
+
+- (IBAction)unwindToMasterC:(UIStoryboardSegue *)segue {
+    //trip detail calls this when exits
+}
+
 @end

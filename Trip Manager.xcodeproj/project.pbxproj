@@ -35,6 +35,8 @@
 		A991A8851C7CA52600B6C289 /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8801C7CA52600B6C289 /* UIFont+FontAwesome.m */; };
 		A991A8861C7CA52600B6C289 /* UIImage+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8821C7CA52600B6C289 /* UIImage+FontAwesome.m */; };
 		A991A8871C7CAB5B00B6C289 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A991A8791C7CA4D300B6C289 /* fontawesome-webfont.ttf */; };
+		A991A8891C7DE65600B6C289 /* NSDateTimeAgo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A991A8881C7DE65600B6C289 /* NSDateTimeAgo.bundle */; };
+		A991A88C1C7DE66C00B6C289 /* NSDate+TimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A88B1C7DE66C00B6C289 /* NSDate+TimeAgo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,9 @@
 		A991A8801C7CA52600B6C289 /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
 		A991A8811C7CA52600B6C289 /* UIImage+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FontAwesome.h"; sourceTree = "<group>"; };
 		A991A8821C7CA52600B6C289 /* UIImage+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FontAwesome.m"; sourceTree = "<group>"; };
+		A991A8881C7DE65600B6C289 /* NSDateTimeAgo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = NSDateTimeAgo.bundle; sourceTree = "<group>"; };
+		A991A88A1C7DE66C00B6C289 /* NSDate+TimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+TimeAgo.h"; path = "../NSDate+TimeAgo.h"; sourceTree = "<group>"; };
+		A991A88B1C7DE66C00B6C289 /* NSDate+TimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+TimeAgo.m"; path = "../NSDate+TimeAgo.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +195,7 @@
 		A991A80D1C7B088F00B6C289 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A991A8881C7DE65600B6C289 /* NSDateTimeAgo.bundle */,
 				A991A8791C7CA4D300B6C289 /* fontawesome-webfont.ttf */,
 				A991A80E1C7B088F00B6C289 /* main.m */,
 			);
@@ -229,6 +235,8 @@
 			children = (
 				A991A8501C7B18ED00B6C289 /* APConstants.h */,
 				A991A8511C7B18ED00B6C289 /* APConstants.m */,
+				A991A88A1C7DE66C00B6C289 /* NSDate+TimeAgo.h */,
+				A991A88B1C7DE66C00B6C289 /* NSDate+TimeAgo.m */,
 				A991A8531C7B1BD800B6C289 /* Customer.h */,
 				A991A8541C7B1BD800B6C289 /* Customer.m */,
 				A991A8561C7B1BE600B6C289 /* Trip.h */,
@@ -375,6 +383,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A991A8871C7CAB5B00B6C289 /* fontawesome-webfont.ttf in Resources */,
+				A991A8891C7DE65600B6C289 /* NSDateTimeAgo.bundle in Resources */,
 				A991A8201C7B088F00B6C289 /* LaunchScreen.storyboard in Resources */,
 				A991A81D1C7B088F00B6C289 /* Assets.xcassets in Resources */,
 				A991A81B1C7B088F00B6C289 /* Main.storyboard in Resources */,
@@ -416,6 +425,7 @@
 				A991A8711C7C8E6A00B6C289 /* DateCell.m in Sources */,
 				A991A80F1C7B088F00B6C289 /* main.m in Sources */,
 				A991A8181C7B088F00B6C289 /* DetailViewController.m in Sources */,
+				A991A88C1C7DE66C00B6C289 /* NSDate+TimeAgo.m in Sources */,
 				A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */,
 				A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */,
 				A991A8741C7C8E7B00B6C289 /* CommentCell.m in Sources */,
