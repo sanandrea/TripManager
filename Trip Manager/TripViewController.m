@@ -41,27 +41,27 @@ const int DAY_SECONDS = 86400;
     [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     [self.dateFormatter setLocale:enUSPOSIXLocale];
     
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.selectedTrip = nil;
+    
     if (self.userId == nil) {
         //means that we arrived here from appdelegate
         //show trips for the loggedin customer
         CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
-
+        
         [crepo findCurrentUserWithSuccess:^(LBUser *user){
             NSDictionary *parameters = @{@"id" : crepo.currentUserId,@"filter":@{@"include":@"customer"}};
             
             [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
-                  self.trips = (NSArray*) value;
-                  [self.tableView reloadData];
+                self.trips = (NSArray*) value;
+                [self.tableView reloadData];
             }failure:CALLBACK_FAILURE_BLOCK];
         }failure:CALLBACK_FAILURE_BLOCK];
     }
-    
 }
-
-//-(void) viewWillAppear:(BOOL)animated{
-//    self.selectedTrip = nil;
-//    [super viewWillAppear:animated];
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -96,10 +96,17 @@ const int DAY_SECONDS = 86400;
         cell.userIcon.hidden = YES;
         cell.userName.hidden = YES;
     }
-    
+
     return cell;
 }
 
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *info = [self.trips objectAtIndex:[indexPath row]];
+    TripRepository *trepo = (TripRepository*)[[[APConstants sharedInstance] getCurrentAdapter] repositoryWithClass:[TripRepository class]];
+    self.selectedTrip = (Trip*)[trepo modelWithDictionary:info];
+    [self performSegueWithIdentifier:@"showTripInfo" sender:self];
+    
+}
 
 
 // Override to support conditional editing of the table view.

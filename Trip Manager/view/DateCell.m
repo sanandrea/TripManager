@@ -25,7 +25,11 @@
     return @{key : self.date};
 }
 - (void) customizeWithData:(Trip*) trip{
-    
+    self.date = (self.isStartDate) ? trip.startdate : trip.enddate;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];    // show short-style date format
+    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+    self.dateValue.text = [dateFormatter stringFromDate:self.date];
 }
 
 @end

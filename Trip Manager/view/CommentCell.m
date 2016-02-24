@@ -25,7 +25,7 @@
     return @{@"comment": self.commentValue.text};
 }
 - (void) customizeWithData:(Trip*) trip{
-    
+    self.commentValue.text = trip.comment;
 }
 
 

@@ -365,9 +365,13 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
     if (self.trip == nil) {
         TripRepository *trepo = (TripRepository*)[[[APConstants sharedInstance] getCurrentAdapter] repositoryWithClass:[TripRepository class]];
         self.trip = (Trip*)[trepo modelWithDictionary:info];
+    }else{
+        for (NSString *key in info) {
+            [self.trip setValue:info[key] forKey:key];
+        }
     }
+
     [self.trip saveWithSuccess:^(){
-        
         [self performSegueWithIdentifier:@"unwindToMasterC" sender:self];
     } failure:CALLBACK_FAILURE_BLOCK];
 }
