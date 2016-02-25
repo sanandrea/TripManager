@@ -16,7 +16,7 @@
     ALog("Callback failed: %@", error.description); \
     }
 
-
+#undef TEST_MODE
 typedef enum UserRole {
     kUserRoleDefault,
     kUserRoleManager,

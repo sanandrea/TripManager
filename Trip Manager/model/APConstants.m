@@ -72,12 +72,13 @@ static int randomLength = 6;
     [repo findWithFilter:filter success:^(NSArray *roleMappings){
         if ([roleMappings count] == 0) {
             self.currentUserRole = kUserRoleDefault;
-        }
-        RoleMapping *rm = [roleMappings objectAtIndex:0];
-        if ([rm[@"role"][@"name"] isEqualToString:@"admin"]) {
-            self.currentUserRole = kUserRoleAdmin;
-        }else if ([rm[@"role"][@"name"] isEqualToString:@"manager"]) {
-            self.currentUserRole = kUserRoleManager;
+        }else{
+            RoleMapping *rm = [roleMappings objectAtIndex:0];
+            if ([rm[@"role"][@"name"] isEqualToString:@"admin"]) {
+                self.currentUserRole = kUserRoleAdmin;
+            }else if ([rm[@"role"][@"name"] isEqualToString:@"manager"]) {
+                self.currentUserRole = kUserRoleManager;
+            }
         }
         [[NSUserDefaults standardUserDefaults] setValue:@(self.currentUserRole)
                                                  forKey:kLastUserRole];

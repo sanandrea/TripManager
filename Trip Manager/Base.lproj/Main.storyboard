@@ -18,8 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFo-Av-Wc4">
+                                <rect key="frame" x="116" y="109" width="368" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="367" id="RBg-fc-Fte"/>
+                                    <constraint firstAttribute="height" constant="30" id="VtT-kp-fZo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RBg-fc-Fte"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ASe-tE-1W0">
-                                <rect key="frame" x="116" y="173" width="368" height="30"/>
+                                <rect key="frame" x="116" y="146" width="368" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VIo-7D-eoS"/>
                                     <constraint firstAttribute="width" constant="367" id="yJX-wl-ur8"/>
@@ -29,6 +43,20 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="yJX-wl-ur8"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1G6-NI-C1S">
+                                <rect key="frame" x="116" y="184" width="368" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="9GV-Td-maK"/>
+                                    <constraint firstAttribute="width" constant="367" id="OxD-0G-c13"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="OxD-0G-c13"/>
                                     </mask>
                                 </variation>
                             </textField>
@@ -62,43 +90,34 @@
                                     <action selector="goAction:" destination="WKF-wg-JLm" eventType="touchUpInside" id="pxt-wZ-fPb"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFo-Av-Wc4">
-                                <rect key="frame" x="116" y="109" width="368" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="367" id="RBg-fc-Fte"/>
-                                    <constraint firstAttribute="height" constant="30" id="VtT-kp-fZo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="RBg-fc-Fte"/>
-                                    </mask>
-                                </variation>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="top" secondItem="Kx5-Kb-sY7" secondAttribute="bottom" constant="89" id="2So-DI-vqa"/>
                             <constraint firstItem="3jh-d4-bfm" firstAttribute="top" secondItem="px8-dl-tqT" secondAttribute="bottom" constant="45" id="3t9-GW-wLy"/>
+                            <constraint firstItem="1G6-NI-C1S" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="5cJ-kX-UCz"/>
                             <constraint firstItem="px8-dl-tqT" firstAttribute="leading" secondItem="ASe-tE-1W0" secondAttribute="leading" id="7Nd-qd-t5a"/>
+                            <constraint firstItem="1G6-NI-C1S" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="7g9-fZ-W0B"/>
                             <constraint firstItem="3jh-d4-bfm" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="8k4-kS-3eh"/>
-                            <constraint firstItem="px8-dl-tqT" firstAttribute="top" secondItem="ASe-tE-1W0" secondAttribute="bottom" constant="33" id="DPg-6O-mg4"/>
+                            <constraint firstItem="px8-dl-tqT" firstAttribute="top" secondItem="ASe-tE-1W0" secondAttribute="bottom" constant="60" id="DPg-6O-mg4"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="centerY" secondItem="px8-dl-tqT" secondAttribute="centerY" id="JBi-Vi-AVd"/>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="LUt-dg-Pgw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ASe-tE-1W0" secondAttribute="trailing" constant="96" id="MuP-ri-7o9"/>
+                            <constraint firstItem="1G6-NI-C1S" firstAttribute="top" secondItem="ASe-tE-1W0" secondAttribute="bottom" constant="8" id="V2x-Io-Bhw"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="trailing" secondItem="ASe-tE-1W0" secondAttribute="trailing" id="VTA-4C-iCQ"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="centerX" secondItem="Xew-7a-HSL" secondAttribute="centerX" id="hR6-V2-Egz"/>
                             <constraint firstItem="ASe-tE-1W0" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="hhh-P8-LDU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OFo-Av-Wc4" secondAttribute="trailing" constant="96" id="kFf-X2-25q"/>
                             <constraint firstItem="OFo-Av-Wc4" firstAttribute="leading" secondItem="Xew-7a-HSL" secondAttribute="leadingMargin" constant="96" id="kfx-7B-FqY"/>
                             <constraint firstItem="FJI-yr-QOQ" firstAttribute="leading" secondItem="px8-dl-tqT" secondAttribute="trailing" constant="8" id="mfB-1i-h8w"/>
-                            <constraint firstItem="ASe-tE-1W0" firstAttribute="top" secondItem="OFo-Av-Wc4" secondAttribute="bottom" constant="34" id="oEl-ny-76m"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1G6-NI-C1S" secondAttribute="trailing" constant="96" id="n4v-hF-6Z9"/>
+                            <constraint firstItem="ASe-tE-1W0" firstAttribute="top" secondItem="OFo-Av-Wc4" secondAttribute="bottom" constant="7" id="oEl-ny-76m"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="LUt-dg-Pgw"/>
                                 <exclude reference="hR6-V2-Egz"/>
+                                <exclude reference="5cJ-kX-UCz"/>
                             </mask>
                         </variation>
                     </view>
@@ -107,6 +126,7 @@
                         <outlet property="passwordTextField" destination="ASe-tE-1W0" id="M0I-2A-HdJ"/>
                         <outlet property="registerInfo" destination="px8-dl-tqT" id="LZq-Ox-5KV"/>
                         <outlet property="registerSwitch" destination="FJI-yr-QOQ" id="34X-j0-MAg"/>
+                        <outlet property="repeatTextField" destination="1G6-NI-C1S" id="39u-1A-Tsh"/>
                         <outlet property="userNameTextField" destination="OFo-Av-Wc4" id="RD4-YO-hzd"/>
                     </connections>
                 </viewController>
