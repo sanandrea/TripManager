@@ -19,6 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *promote;
 - (IBAction)promoteAction:(id)sender;
 
-@property (strong, nonatomic) Customer* customer;
+@property (strong, nonatomic) NSString* userId;
 
 @end

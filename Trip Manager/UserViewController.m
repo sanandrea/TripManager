@@ -11,6 +11,8 @@
 #import "NSString+FontAwesome.h"
 #import "UserCell.h"
 #import "Customer.h"
+#import "TripViewController.h"
+#import "EditUserViewController.h"
 
 @interface UserViewController ()
 
@@ -49,9 +51,18 @@
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        
+    NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    UIViewController *next = [segue destinationViewController];
+    NSString *userId = [[self.users objectAtIndex:[selectedIndexPath row]] valueForKey:@"id"];
+    
+    if ([[segue identifier] isEqualToString:@"showTripsOfUser"]) {
+        TripViewController *tvc = (TripViewController*) next;
+        tvc.userId = userId;
+    }else if ([[segue identifier] isEqualToString:@"editUserSegue"]) {
+        EditUserViewController *euvc = (EditUserViewController*)next;
+        euvc.userId = userId;
     }
+    [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 #pragma mark - Table View
@@ -74,11 +85,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.tableView.editing == NO) {
-        [self performSegueWithIdentifier:@"showDetail" sender:self];
+        [self performSegueWithIdentifier:@"showTripsOfUser" sender:self];
     }else{
-        [self performSegueWithIdentifier:@"AddShopView" sender:self];
+        [self performSegueWithIdentifier:@"editUserSegue" sender:self];
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

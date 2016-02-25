@@ -48,22 +48,18 @@ const int DAY_SECONDS = 86400;
     [super viewWillAppear:animated];
     self.selectedTrip = nil;
     
-    if (self.userId == nil) {
-        //means that we arrived here from appdelegate
-        //show trips for the loggedin customer
-        CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
+    
+    CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
+    NSString *userId = (self.userId == nil) ? crepo.currentUserId : self.userId;
         
-        [crepo findCurrentUserWithSuccess:^(LBUser *user){
-            NSDictionary *parameters = @{@"id" : crepo.currentUserId,@"filter":@{@"include":@"customer"}};
-            
-            [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
-                self.trips = (NSArray*) value;
-                [self.tableView reloadData];
-            }failure:CALLBACK_FAILURE_BLOCK];
-        } failure:CALLBACK_FAILURE_BLOCK];
+    [crepo findCurrentUserWithSuccess:^(LBUser *user){
+        NSDictionary *parameters = @{@"id" : userId,@"filter":@{@"include":@"customer"}};
         
-        
-    }
+        [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
+            self.trips = (NSArray*) value;
+            [self.tableView reloadData];
+        }failure:CALLBACK_FAILURE_BLOCK];
+    } failure:CALLBACK_FAILURE_BLOCK];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,6 +94,11 @@ const int DAY_SECONDS = 86400;
     if (self.userId == nil) {
         cell.userIcon.hidden = YES;
         cell.userName.hidden = YES;
+    }else{
+        cell.userIcon.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        cell.userIcon.text = [NSString fontAwesomeIconStringForEnum:FAUser];
+        cell.userName.text = cellData[@"customer"][@"username"];
+        
     }
 
     return cell;
