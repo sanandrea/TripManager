@@ -22,6 +22,8 @@ const int DAY_SECONDS = 86400;
 @property (strong, nonatomic) NSArray* trips;
 @property (strong, nonatomic) Trip *selectedTrip;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) UISearchController *searchController;
+@property (nonatomic, strong) NSArray *filteredTrips;
 @end
 
 @implementation TripViewController
@@ -41,6 +43,16 @@ const int DAY_SECONDS = 86400;
     [self.dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
     [self.dateFormatter setLocale:enUSPOSIXLocale];
     
+    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+
+    self.searchController.searchResultsUpdater = self;
+    self.searchController.dimsBackgroundDuringPresentation = false;
+    self.searchController.searchBar.delegate = self;
+    self.definesPresentationContext = true;
+    
+    self.searchController.searchBar.scopeButtonTitles = @[@"All", @"Destination", @"Comment"];
+    self.tableView.tableHeaderView = self.searchController.searchBar;
+
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -57,6 +69,7 @@ const int DAY_SECONDS = 86400;
         
         [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
             self.trips = (NSArray*) value;
+            self.filteredTrips = [NSMutableArray arrayWithCapacity:[self.trips count]];
             [self.tableView reloadData];
         }failure:CALLBACK_FAILURE_BLOCK];
     } failure:CALLBACK_FAILURE_BLOCK];
@@ -70,6 +83,10 @@ const int DAY_SECONDS = 86400;
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.searchController.isActive && [self.searchController.searchBar.text length] > 0) {
+        return [self.filteredTrips count];
+    }
+    
     return [self.trips count];
 }
 
@@ -78,7 +95,12 @@ const int DAY_SECONDS = 86400;
     TripCell *cell = (TripCell*)[tableView dequeueReusableCellWithIdentifier:@"tripCell"
                                                                 forIndexPath:indexPath];
     
-    NSDictionary *cellData = [self.trips objectAtIndex:[indexPath row]];
+    NSDictionary *cellData;
+    if (self.searchController.isActive && [self.searchController.searchBar.text length] > 0){
+        cellData = [self.filteredTrips objectAtIndex:[indexPath row]];
+    }else{
+        cellData = [self.trips objectAtIndex:[indexPath row]];
+    }
     
     cell.destination.text = cellData[@"destination"];
     
@@ -105,7 +127,13 @@ const int DAY_SECONDS = 86400;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *info = [self.trips objectAtIndex:[indexPath row]];
+    NSDictionary *info;
+    if (self.searchController.isActive && [self.searchController.searchBar.text length] > 0){
+        info = [self.filteredTrips objectAtIndex:[indexPath row]];
+    }else{
+        info = [self.trips objectAtIndex:[indexPath row]];
+    }
+
     TripRepository *trepo = (TripRepository*)[[[APConstants sharedInstance] getCurrentAdapter] repositoryWithClass:[TripRepository class]];
     self.selectedTrip = (Trip*)[trepo modelWithDictionary:info];
     [self performSegueWithIdentifier:@"showTripInfo" sender:self];
@@ -183,6 +211,28 @@ const int DAY_SECONDS = 86400;
                                            NSForegroundColorAttributeName: self.view.tintColor
                                            } forState:UIControlStateNormal];
     [self.planner setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"]];
+}
+
+#pragma mark - Filtering
+- (void)filterContentForSearchText:(NSString*) text inScope:(NSString*)scope{
+    NSString *predString;
+    if ([scope isEqualToString:@"All"]) {
+        predString = [NSString stringWithFormat:@"(destination contains[c] '%@') OR (comment contains[c] '%@')", text,text];
+    }else{
+        predString = [NSString stringWithFormat:@"(%@ contains[cd] '%@')", [scope lowercaseString],text];
+    }
+    NSPredicate *pred = [NSPredicate predicateWithFormat:predString];
+    self.filteredTrips = [self.trips filteredArrayUsingPredicate:pred];
+    [self.tableView reloadData];
+}
+- (void) updateSearchResultsForSearchController:(UISearchController *)searchController{
+    NSString *text = searchController.searchBar.text;
+    NSString *scope = [searchController.searchBar.scopeButtonTitles objectAtIndex:searchController.searchBar.selectedScopeButtonIndex];
+    [self filterContentForSearchText:text inScope:scope];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar selectedScopeButtonIndexDidChange:(NSInteger)selectedScope{
+    [self filterContentForSearchText:searchBar.text inScope:[searchBar.scopeButtonTitles objectAtIndex:selectedScope]];
 }
 
 #pragma mark - IBActions
