@@ -29,6 +29,10 @@
             forMethod:[NSString stringWithFormat:@"%@.trip-list", self.className]];
     
     
+    [contract addItem:[SLRESTContractItem itemWithPattern:[NSString stringWithFormat:@"/%@/:id/promote", self.className] verb:@"POST"]
+            forMethod:[NSString stringWithFormat:@"%@.promote-user", self.className]];
+    
+    
     return contract;
 }
 

@@ -16,7 +16,7 @@
 
 @interface UserViewController ()
 
-@property (strong, nonatomic) NSArray* users;
+@property (strong, nonatomic) NSMutableArray* users;
 @end
 
 @implementation UserViewController
@@ -24,9 +24,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.title = @"Users";
+    self.title = NSLocalizedString(@"Users", @"users title");
 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.allowsSelectionDuringEditing = YES;
     [self customizeToolbar];
 }
 
@@ -36,7 +37,7 @@
     CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
     
     [crepo findWithFilter:@{} success:^(NSArray *customers){
-        self.users = customers;
+        self.users = [NSMutableArray arrayWithArray:customers];
         [self.tableView reloadData];
     } failure:CALLBACK_FAILURE_BLOCK];
     
@@ -60,7 +61,7 @@
         tvc.userId = userId;
     }else if ([[segue identifier] isEqualToString:@"editUserSegue"]) {
         EditUserViewController *euvc = (EditUserViewController*)next;
-        euvc.userId = userId;
+        euvc.customer = (Customer*)[self.users objectAtIndex:[selectedIndexPath row]];
     }
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
@@ -99,8 +100,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-#warning TODO
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Customer *toDelete = (Customer*)[self.users objectAtIndex:[indexPath row]];
+        [toDelete destroyWithSuccess:^{
+            [self.users removeObject:toDelete];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        } failure:CALLBACK_FAILURE_BLOCK];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
