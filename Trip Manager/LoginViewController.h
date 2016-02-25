@@ -21,7 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *goButton;
 @property (weak, nonatomic) IBOutlet UISwitch *registerSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *errorMessage;
+@property (nonatomic) BOOL isManager;
 
 
 - (IBAction)goAction:(id)sender;

@@ -13,6 +13,7 @@
 #import "Customer.h"
 #import "TripViewController.h"
 #import "EditUserViewController.h"
+#import "LoginViewController.h"
 
 @interface UserViewController ()
 
@@ -62,6 +63,9 @@
     }else if ([[segue identifier] isEqualToString:@"editUserSegue"]) {
         EditUserViewController *euvc = (EditUserViewController*)next;
         euvc.customer = (Customer*)[self.users objectAtIndex:[selectedIndexPath row]];
+    }else if ([[segue identifier] isEqualToString:@"presentLoginView"]){
+        LoginViewController *lvc = (LoginViewController*)[segue destinationViewController];
+        lvc.isManager = YES;
     }
     [self.tableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
@@ -118,6 +122,11 @@
                                           NSForegroundColorAttributeName: self.view.tintColor
                                           } forState:UIControlStateNormal];
     [self.logout setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-sign-out"]];
+    [self.addEntry setTitleTextAttributes:@{
+                                            NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                            NSForegroundColorAttributeName: self.view.tintColor
+                                            } forState:UIControlStateNormal];
+    [self.addEntry setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-plus"]];
 }
 
 #pragma mark - IBActions
@@ -126,4 +135,12 @@
     [handler logoutUser];
 }
 
+- (IBAction)addEntryAction:(id)sender{
+    [self performSegueWithIdentifier:@"presentLoginView" sender:self];
+}
+
+
+- (IBAction)unwindToUserController:(UIStoryboardSegue *)segue {
+    //trip detail calls this when exits
+}
 @end

@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *logout;
+@property (strong,nonatomic) IBOutlet UIBarButtonItem *addEntry;
 
 @end
 

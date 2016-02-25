@@ -15,7 +15,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0GR-jG-zU0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xew-7a-HSL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OFo-Av-Wc4">
@@ -128,9 +128,11 @@
                         <outlet property="registerSwitch" destination="FJI-yr-QOQ" id="34X-j0-MAg"/>
                         <outlet property="repeatTextField" destination="1G6-NI-C1S" id="39u-1A-Tsh"/>
                         <outlet property="userNameTextField" destination="OFo-Av-Wc4" id="RD4-YO-hzd"/>
+                        <segue destination="vd0-JH-Utg" kind="unwind" identifier="unwindToUserController" unwindAction="unwindToUserController:" id="Jak-kF-3Nh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lSF-Q7-stO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="vd0-JH-Utg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-38" y="-1320"/>
         </scene>
@@ -295,14 +297,22 @@
                                 <action selector="logoutAction:" destination="7bK-jq-Zjz" id="92a-9Z-2FX"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="yey-xd-MhM"/>
+                        <barButtonItem title="Item" id="c9M-f3-r70">
+                            <connections>
+                                <action selector="addEntryAction:" destination="7bK-jq-Zjz" id="uKs-NC-yT8"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lCJ-Kn-2ZD"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Master" id="Zdf-7t-Un8"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
+                        <outlet property="addEntry" destination="c9M-f3-r70" id="yqK-LX-P28"/>
                         <outlet property="logout" destination="IpY-q7-U2r" id="6KQ-jn-l08"/>
                         <segue destination="ZWi-2w-id9" kind="show" identifier="showTripsOfUser" id="m7R-3t-zz0"/>
                         <segue destination="oqA-z1-p9u" kind="show" identifier="editUserSegue" id="knT-D2-yp0"/>
+                        <segue destination="WKF-wg-JLm" kind="show" identifier="presentLoginView" id="UVW-Wf-sic"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>

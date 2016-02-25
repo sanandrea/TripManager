@@ -23,7 +23,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.registerInfo.text = NSLocalizedString(@"New user", @"New user label");
+    [self.registerSwitch setOn:false];
+
+    if (self.isManager) {
+        self.title = @"Create";
+        [self.goButton setTitle:@"Create user" forState:UIControlStateNormal];
+        self.registerInfo.text = NSLocalizedString(@"Add user", nil);
+        [self.registerSwitch setOn:true];
+        self.registerSwitch.hidden = YES;
+    }else{
+        self.registerInfo.text = NSLocalizedString(@"New user", @"New user label");
+        
+        [self switchAction:self];
+    }
+    
+    
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -45,11 +60,6 @@
     [self.repeatTextField addTarget:self
                                action:@selector(dummy)
                      forControlEvents:UIControlEventEditingDidEndOnExit];
-    
-    
-    [self.registerSwitch setOn:false];
-    [self switchAction:self];
-    
 }
 
 -(void)dummy{}
@@ -241,6 +251,10 @@
             return;
         }
         [customer saveWithSuccess:^{
+            if (self.isManager) {
+                [self performSegueWithIdentifier:@"unwindToUserController" sender:self];
+                return;
+            }
             [crepo userByLoginWithUserName:username password:password success:^(LBUser *user) {
                 ALog("Here %@", user);
                 [[APConstants sharedInstance] updateRoleWithUser:user on:^{
