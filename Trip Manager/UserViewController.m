@@ -72,6 +72,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.tableView.editing == NO) {
+        [self performSegueWithIdentifier:@"showDetail" sender:self];
+    }else{
+        [self performSegueWithIdentifier:@"AddShopView" sender:self];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;

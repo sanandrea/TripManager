@@ -56,6 +56,7 @@
 		A991A8C61C7E0A8F00B6C289 /* M13ProgressViewSegmentedRing.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B31C7E0A8F00B6C289 /* M13ProgressViewSegmentedRing.m */; };
 		A991A8C71C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B51C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m */; };
 		A991A8CA1C7E30D000B6C289 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8C91C7E30D000B6C289 /* UserCell.m */; };
+		A991A8CD1C7EEC6500B6C289 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,8 @@
 		A991A8B51C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
 		A991A8C81C7E30D000B6C289 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		A991A8C91C7E30D000B6C289 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		A991A8CB1C7EEC6500B6C289 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
+		A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +243,8 @@
 				A991A8691C7C884E00B6C289 /* TripDetailViewController.m */,
 				A991A8161C7B088F00B6C289 /* DetailViewController.h */,
 				A991A8171C7B088F00B6C289 /* DetailViewController.m */,
+				A991A8CB1C7EEC6500B6C289 /* EditUserViewController.h */,
+				A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */,
 				A991A8191C7B088F00B6C289 /* Main.storyboard */,
 				A991A81C1C7B088F00B6C289 /* Assets.xcassets */,
 				A991A81E1C7B088F00B6C289 /* LaunchScreen.storyboard */,
@@ -579,6 +584,7 @@
 				A991A8C01C7E0A8F00B6C289 /* M13ProgressViewMetro.m in Sources */,
 				A991A8671C7C626300B6C289 /* RoleMapping.m in Sources */,
 				A991A8C71C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m in Sources */,
+				A991A8CD1C7EEC6500B6C289 /* EditUserViewController.m in Sources */,
 				A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */,
 				A991A8741C7C8E7B00B6C289 /* CommentCell.m in Sources */,
 				A991A84E1C7B0CE400B6C289 /* UICKeyChainStore.m in Sources */,
