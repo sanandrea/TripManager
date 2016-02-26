@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TripViewController : UITableViewController<UISearchResultsUpdating, UISearchBarDelegate>
+@interface TripViewController : UITableViewController<UISearchResultsUpdating, UISearchBarDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *planner;
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *logout;
