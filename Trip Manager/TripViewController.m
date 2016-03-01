@@ -15,6 +15,7 @@
 #import "TripCell.h"
 #import "Customer.h"
 #import "NSDate+TimeAgo.h"
+#import "PdfCreator.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -263,43 +264,22 @@ const int DAY_SECONDS = 86400;
 #pragma mark - planner
 
 - (void) generateAndViewPDF{
-    // obtain the picker view cell's height, works because the cell was pre-defined in our storyboard
-    UITableViewCell *sizer = [self.tableView dequeueReusableCellWithIdentifier:@"tripCell"];
-    double cellHeight = CGRectGetHeight(sizer.frame);
-    double cellWidth = CGRectGetWidth(sizer.frame);
-    
-    NSInteger numrows = [self.tableView numberOfRowsInSection:0];
-    CGRect pdfSize = CGRectMake(0, 0, cellWidth, cellHeight * numrows);
-    
-    NSMutableData* pdfData = [NSMutableData data];
-    UIGraphicsBeginPDFContextToData(pdfData, pdfSize, nil);
-    UIGraphicsBeginPDFPage();
-    CGContextRef pdfContext = UIGraphicsGetCurrentContext();
-    
-    
-
-
-    for (NSInteger i = 0; i < [self.tableView numberOfRowsInSection:0]; ++i)
-    {
-        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        if (cell != nil) {
-            [cell.layer renderInContext:pdfContext];
-            CGContextTranslateCTM(pdfContext, 0, cellHeight);
-        }
-    }
-    //[testCell.layer renderInContext:pdfContext];
-    UIGraphicsEndPDFContext();
-    
     // Retrieves the document directories from the iOS device
     NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask,YES);
     
     NSString* documentDirectory = [documentDirectories objectAtIndex:0];
-    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"test.pdf"];
+    NSString* documentDirectoryFilename = [documentDirectory stringByAppendingPathComponent:@"plan.pdf"];
     
-    // instructs the mutable data object to write its context to a file on disk
-    [pdfData writeToFile:documentDirectoryFilename atomically:YES];
     NSLog(@"documentDirectoryFileName: %@",documentDirectoryFilename);
     
+    PdfCreator *pdf = [[PdfCreator alloc] init];
+    [pdf createPdfWithName:documentDirectoryFilename];
+    
+    for (Trip *t in self.trips) {
+        [pdf drawLabelsForTrip:t];
+    }
+    
+    [pdf endFile];
     
     NSURL *URL = [NSURL fileURLWithPath:documentDirectoryFilename];
     

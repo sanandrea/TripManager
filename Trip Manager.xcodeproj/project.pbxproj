@@ -57,7 +57,8 @@
 		A991A8C71C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8B51C7E0A8F00B6C289 /* M13ProgressViewStripedBar.m */; };
 		A991A8CA1C7E30D000B6C289 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8C91C7E30D000B6C289 /* UserCell.m */; };
 		A991A8CD1C7EEC6500B6C289 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */; };
-		A991A8CF1C80A01600B6C289 /* adisu.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A991A8CE1C80A01500B6C289 /* adisu.pdf */; };
+		A991A8D21C848FBA00B6C289 /* PdfCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8D11C848FBA00B6C289 /* PdfCreator.m */; };
+		A991A8D41C85989F00B6C289 /* Planner.xib in Resources */ = {isa = PBXBuildFile; fileRef = A991A8D31C85989F00B6C289 /* Planner.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,7 +176,9 @@
 		A991A8C91C7E30D000B6C289 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		A991A8CB1C7EEC6500B6C289 /* EditUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditUserViewController.h; sourceTree = "<group>"; };
 		A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditUserViewController.m; sourceTree = "<group>"; };
-		A991A8CE1C80A01500B6C289 /* adisu.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = adisu.pdf; sourceTree = "<group>"; };
+		A991A8D01C848FBA00B6C289 /* PdfCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfCreator.h; sourceTree = "<group>"; };
+		A991A8D11C848FBA00B6C289 /* PdfCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfCreator.m; sourceTree = "<group>"; };
+		A991A8D31C85989F00B6C289 /* Planner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Planner.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +211,6 @@
 		A991A8011C7B088F00B6C289 = {
 			isa = PBXGroup;
 			children = (
-				A991A8CE1C80A01500B6C289 /* adisu.pdf */,
 				A991A84A1C7B0C8900B6C289 /* Security.framework */,
 				A991A8491C7B0C6C00B6C289 /* ThirdParty */,
 				A991A8431C7B0B8A00B6C289 /* LoopBack.framework */,
@@ -308,6 +310,8 @@
 				A991A8571C7B1BE600B6C289 /* Trip.m */,
 				A991A8651C7C626300B6C289 /* RoleMapping.h */,
 				A991A8661C7C626300B6C289 /* RoleMapping.m */,
+				A991A8D01C848FBA00B6C289 /* PdfCreator.h */,
+				A991A8D11C848FBA00B6C289 /* PdfCreator.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -328,6 +332,7 @@
 				A991A8771C7C92D600B6C289 /* TripCell.m */,
 				A991A8C81C7E30D000B6C289 /* UserCell.h */,
 				A991A8C91C7E30D000B6C289 /* UserCell.m */,
+				A991A8D31C85989F00B6C289 /* Planner.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -529,7 +534,7 @@
 				A991A8891C7DE65600B6C289 /* NSDateTimeAgo.bundle in Resources */,
 				A991A8201C7B088F00B6C289 /* LaunchScreen.storyboard in Resources */,
 				A991A81D1C7B088F00B6C289 /* Assets.xcassets in Resources */,
-				A991A8CF1C80A01600B6C289 /* adisu.pdf in Resources */,
+				A991A8D41C85989F00B6C289 /* Planner.xib in Resources */,
 				A991A81B1C7B088F00B6C289 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -596,6 +601,7 @@
 				A991A8C11C7E0A8F00B6C289 /* M13ProgressViewMetroDotPolygon.m in Sources */,
 				A991A8551C7B1BD800B6C289 /* Customer.m in Sources */,
 				A991A8581C7B1BE600B6C289 /* Trip.m in Sources */,
+				A991A8D21C848FBA00B6C289 /* PdfCreator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
