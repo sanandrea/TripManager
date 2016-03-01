@@ -39,6 +39,7 @@ static int randomLength = 6;
     if (self = [super init]) {
         self.adapter = [LBRESTAdapter adapterWithURL:[NSURL URLWithString:@"http://127.0.0.1:3000/api/v1"]];
         self.repository = (CustomerRepository*) [self.adapter repositoryWithClass:[CustomerRepository class]];
+        self.currentUserRole = [[[NSUserDefaults standardUserDefaults] objectForKey:kLastUserRole] intValue];
     }
     return self;
 }

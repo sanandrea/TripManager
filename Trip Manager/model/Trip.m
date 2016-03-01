@@ -20,4 +20,13 @@
 + (instancetype)repository {
     return [self repositoryWithClassName:@"trips"];
 }
+
+- (SLRESTContract *)contract {
+    SLRESTContract *contract = [super contract];
+    
+    [contract addItem:[SLRESTContractItem itemWithPattern:[NSString stringWithFormat:@"/%@", self.className] verb:@"GET"]
+            forMethod:[NSString stringWithFormat:@"%@.list-all", self.className]];
+    
+    return contract;
+}
 @end

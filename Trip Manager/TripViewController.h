@@ -15,6 +15,7 @@
 @property (strong,nonatomic) IBOutlet UIBarButtonItem *addEntry;
 
 @property (strong,nonatomic) NSString *userId;
+@property (nonatomic) BOOL showAlltrips;
 
 - (IBAction)logoutAction:(id)sender;
 - (IBAction)addAction:(id)sender;

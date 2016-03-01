@@ -18,6 +18,7 @@
 @interface UserViewController ()
 
 @property (strong, nonatomic) NSMutableArray* users;
+@property (nonatomic) BOOL showAllTrips;
 @end
 
 @implementation UserViewController
@@ -30,18 +31,20 @@
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.allowsSelectionDuringEditing = YES;
     [self customizeToolbar];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    self.showAllTrips = NO;
     self.clearsSelectionOnViewWillAppear = self.splitViewController.isCollapsed;
     [super viewWillAppear:animated];
     CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
-    
-    [crepo findWithFilter:@{} success:^(NSArray *customers){
+    NSDictionary *filter = @{@"include":@{@"relation":@"roleMapping", @"scope":@{@"include":@"role"}}};
+    [crepo findWithFilter:filter success:^(NSArray *customers){
         self.users = [NSMutableArray arrayWithArray:customers];
         [self.tableView reloadData];
     } failure:CALLBACK_FAILURE_BLOCK];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +63,9 @@
     if ([[segue identifier] isEqualToString:@"showTripsOfUser"]) {
         TripViewController *tvc = (TripViewController*) next;
         tvc.userId = userId;
+        if (self.showAllTrips) {
+            tvc.showAlltrips = YES;
+        }
     }else if ([[segue identifier] isEqualToString:@"editUserSegue"]) {
         EditUserViewController *euvc = (EditUserViewController*)next;
         euvc.customer = (Customer*)[self.users objectAtIndex:[selectedIndexPath row]];
@@ -81,10 +87,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userCell" forIndexPath:indexPath];
+    UserCell *cell = (UserCell*)[tableView dequeueReusableCellWithIdentifier:@"userCell" forIndexPath:indexPath];
     Customer *customer = [self.users objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = customer.username;
+    cell.usernameLabel.text = customer.username;
+    if ([customer[@"roleMapping"] count] > 0) {
+        cell.userRoleLabel.hidden = NO;
+        cell.userRoleValue.hidden = NO;
+        cell.userRoleLabel.font = [UIFont fontWithName:kFontAwesomeFamilyName size:20];
+        cell.userRoleLabel.text = [NSString fontAwesomeIconStringForEnum:FAUsers];
+        cell.userRoleValue.text = customer[@"roleMapping"][@"role"][@"name"];
+    }else{
+        cell.userRoleLabel.hidden = YES;
+        cell.userRoleValue.hidden = YES;
+    }
+    
     return cell;
 }
 
@@ -127,9 +144,29 @@
                                             NSForegroundColorAttributeName: self.view.tintColor
                                             } forState:UIControlStateNormal];
     [self.addEntry setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-plus"]];
+    UserRole role = ((APConstants*)[APConstants sharedInstance]).currentUserRole;
+    if (role == kUserRoleAdmin) {
+        //add button for all trips
+        UIBarButtonItem *flexibleItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+        
+        UIBarButtonItem *calendarButton=[[UIBarButtonItem alloc] initWithTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-list-alt"] style:UIBarButtonItemStylePlain target:self action:@selector(showCalendar)];
+        [calendarButton setTitleTextAttributes:@{
+                                                 NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
+                                                 NSForegroundColorAttributeName: self.view.tintColor
+                                                 } forState:UIControlStateNormal];
+        NSMutableArray *newItems = [self.toolbarItems mutableCopy];
+        [newItems addObject:calendarButton];
+        [newItems addObject:flexibleItem];
+        [self setToolbarItems:newItems];
+    }
 }
 
 #pragma mark - IBActions
+- (void) showCalendar{
+    self.showAllTrips = YES;
+    [self performSegueWithIdentifier:@"showTripsOfUser" sender:self];
+}
+
 - (IBAction)logoutAction:(id)sender {
     id<LogoutHandlerProtocol> handler = (id<LogoutHandlerProtocol>)[[UIApplication sharedApplication] delegate];
     [handler logoutUser];

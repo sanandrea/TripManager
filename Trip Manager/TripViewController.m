@@ -64,19 +64,30 @@ const int DAY_SECONDS = 86400;
     [super viewWillAppear:animated];
     self.selectedTrip = nil;
     
-    
-    CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
-    NSString *userId = (self.userId == nil) ? crepo.currentUserId : self.userId;
+    if (self.showAlltrips) {
+        LBRESTAdapter *adapter = (LBRESTAdapter*) [[APConstants sharedInstance] getCurrentAdapter];
+        TripRepository *trepo = (TripRepository*) [adapter repositoryWithClass:[TripRepository class]];
+        NSDictionary *parameters = @{@"filter":@{@"include":@"customer"}};
         
-    [crepo findCurrentUserWithSuccess:^(LBUser *user){
-        NSDictionary *parameters = @{@"id" : userId,@"filter":@{@"include":@"customer"}};
-        
-        [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
+        [trepo invokeStaticMethod:@"list-all" parameters:parameters success:^(id value){
             self.trips = (NSArray*) value;
             self.filteredTrips = [NSMutableArray arrayWithCapacity:[self.trips count]];
             [self.tableView reloadData];
-        }failure:CALLBACK_FAILURE_BLOCK];
-    } failure:CALLBACK_FAILURE_BLOCK];
+        } failure:CALLBACK_FAILURE_BLOCK];
+        
+    }else{
+        CustomerRepository *crepo = (CustomerRepository*)[[APConstants sharedInstance] getCustomerRepository];
+        NSString *userId = (self.userId == nil) ? crepo.currentUserId : self.userId;
+        [crepo findCurrentUserWithSuccess:^(LBUser *user){
+            NSDictionary *parameters = @{@"id" : userId,@"filter":@{@"include":@"customer"}};
+            
+            [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
+                self.trips = (NSArray*) value;
+                self.filteredTrips = [NSMutableArray arrayWithCapacity:[self.trips count]];
+                [self.tableView reloadData];
+            }failure:CALLBACK_FAILURE_BLOCK];
+        } failure:CALLBACK_FAILURE_BLOCK];
+    }
 }
 
 -(void)dealloc {
