@@ -22,7 +22,7 @@
 const int DAY_SECONDS = 86400;
 
 @interface TripViewController ()
-@property (strong, nonatomic) NSArray* trips;
+@property (strong, nonatomic) NSMutableArray* trips;
 @property (strong, nonatomic) Trip *selectedTrip;
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 @property (strong, nonatomic) UISearchController *searchController;
@@ -70,7 +70,7 @@ const int DAY_SECONDS = 86400;
         NSDictionary *parameters = @{@"filter":@{@"include":@"customer"}};
         
         [trepo invokeStaticMethod:@"list-all" parameters:parameters success:^(id value){
-            self.trips = (NSArray*) value;
+            self.trips = [NSMutableArray arrayWithArray:(NSArray*)value];
             self.filteredTrips = [NSMutableArray arrayWithCapacity:[self.trips count]];
             [self.tableView reloadData];
         } failure:CALLBACK_FAILURE_BLOCK];
@@ -82,7 +82,7 @@ const int DAY_SECONDS = 86400;
             NSDictionary *parameters = @{@"id" : userId,@"filter":@{@"include":@"customer"}};
             
             [crepo invokeStaticMethod:@"trip-list" parameters:parameters success:^(id value){
-                self.trips = (NSArray*) value;
+                self.trips = [NSMutableArray arrayWithArray:(NSArray*)value];
                 self.filteredTrips = [NSMutableArray arrayWithCapacity:[self.trips count]];
                 [self.tableView reloadData];
             }failure:CALLBACK_FAILURE_BLOCK];
@@ -171,7 +171,14 @@ const int DAY_SECONDS = 86400;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        NSDictionary *toDelete = (NSDictionary*)[self.trips objectAtIndex:[indexPath row]];
+        LBRESTAdapter *adapter = (LBRESTAdapter*) [[APConstants sharedInstance] getCurrentAdapter];
+        TripRepository *trepo = (TripRepository*) [adapter repositoryWithClass:[TripRepository class]];
+        Trip *trip = (Trip*)[trepo modelWithDictionary:toDelete];
+        [trip destroyWithSuccess:^{
+            [self.trips removeObject:toDelete];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        } failure:CALLBACK_FAILURE_BLOCK];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
