@@ -39,7 +39,7 @@ const int END_DATE_TAG = 13;
         case END_DATE_TAG:
             return @"enddate";
         default:
-            return @"";
+            return nil;
     }
 }
 
@@ -132,6 +132,9 @@ const int END_DATE_TAG = 13;
     // that no old scaling factors are left in place.
     CGContextSetTextMatrix(currentContext, CGAffineTransformIdentity);
     
+    
+    //save state
+    CGContextSaveGState(currentContext);
     // Core Text draws from the bottom-left corner up, so flip
     // the current transform prior to drawing.
     CGContextTranslateCTM(currentContext, 0, frameRect.origin.y*2 + frameRect.size.height);
@@ -139,9 +142,8 @@ const int END_DATE_TAG = 13;
     
     // Draw the frame.
     CTFrameDraw(frameRef, currentContext);
-    
-    CGContextScaleCTM(currentContext, 1.0, -1.0);
-    CGContextTranslateCTM(currentContext, 0, -frameRect.origin.y*2 -frameRect.size.height);
+    //restore state
+    CGContextRestoreGState(currentContext);
     
     CFRelease(frameRef);
     CFRelease(stringRef);
@@ -155,18 +157,54 @@ const int END_DATE_TAG = 13;
         {
             UILabel* label = (UILabel*)view;
             NSString *key = [PdfCreator objectKeyForTag:view.tag];
+            if (key) {
+                [self drawText:[trip valueForKey:key] inFrame:label.frame];
+            }else{
+                [self drawText:label.text inFrame:label.frame];
+            }
             
-            [self drawText:[trip valueForKey:key] inFrame:label.frame];
         }
     }
+    
     // Get the graphics context.
     CGContextRef    currentContext = UIGraphicsGetCurrentContext();
+    
+   
+    
     CGContextTranslateCTM(currentContext, 0, TRIP_ROW_HEIGHT);
+    //draw separator
+    CGPoint left = CGPointMake(10, 0);
+    CGPoint right = CGPointMake(A4_WIDTH - 10, 0);
+    [self drawLineFromPoint:left toPoint:right];
     self.counter++;
-    if (self.counter % 8 == 0) {
+    int numRows = A4_HEIGHT / TRIP_ROW_HEIGHT;
+    if (self.counter % numRows == 0) {
         UIGraphicsBeginPDFPageWithInfo(CGRectMake(0, 0, A4_WIDTH, A4_HEIGHT), nil);
     }
     
+    
+}
+
+- (void)drawLineFromPoint:(CGPoint)from toPoint:(CGPoint)to
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetLineWidth(context, 2.0);
+    
+    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
+    
+    CGFloat components[] = {0.2, 0.2, 0.2, 0.3};
+    
+    CGColorRef color = CGColorCreate(colorspace, components);
+    
+    CGContextSetStrokeColorWithColor(context, color);
+    
+    CGContextMoveToPoint(context, from.x, from.y);
+    CGContextAddLineToPoint(context, to.x, to.y);
+    
+    CGContextStrokePath(context);
+    CGColorSpaceRelease(colorspace);
+    CGColorRelease(color);
     
 }
 

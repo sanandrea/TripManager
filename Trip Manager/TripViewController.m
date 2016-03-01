@@ -275,7 +275,25 @@ const int DAY_SECONDS = 86400;
     PdfCreator *pdf = [[PdfCreator alloc] init];
     [pdf createPdfWithName:documentDirectoryFilename];
     
-    for (Trip *t in self.trips) {
+    
+    
+    //filter array only for next month
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *today = [NSDate date];
+    NSPredicate *nextMonth = [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        NSDate *start = [self.dateFormatter dateFromString:[evaluatedObject valueForKey:@"startdate"]];
+        NSDateComponents *components = [gregorianCalendar components:NSCalendarUnitDay
+                                                            fromDate:today
+                                                              toDate:start
+                                                             options:NSCalendarWrapComponents];
+        return [components day] < 30;
+        
+    }];
+    
+    
+    NSArray *nextMonthTrips = [self.trips filteredArrayUsingPredicate:nextMonth];
+    
+    for (Trip *t in nextMonthTrips) {
         [pdf drawLabelsForTrip:t];
     }
     
