@@ -107,7 +107,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (self.tableView.editing == NO) {
-        [self performSegueWithIdentifier:@"showTripsOfUser" sender:self];
+        UserRole role = ((APConstants*)[APConstants sharedInstance]).currentUserRole;
+        if (role == kUserRoleAdmin){
+            [self performSegueWithIdentifier:@"showTripsOfUser" sender:self];
+        }else{
+            [self performSegueWithIdentifier:@"editUserSegue" sender:self];
+        }
+        
     }else{
         [self performSegueWithIdentifier:@"editUserSegue" sender:self];
     }
