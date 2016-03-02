@@ -15,7 +15,7 @@
 		A991A81D1C7B088F00B6C289 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A991A81C1C7B088F00B6C289 /* Assets.xcassets */; };
 		A991A8201C7B088F00B6C289 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A991A81E1C7B088F00B6C289 /* LaunchScreen.storyboard */; };
 		A991A82B1C7B088F00B6C289 /* Trip_ManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A82A1C7B088F00B6C289 /* Trip_ManagerTests.m */; };
-		A991A8361C7B088F00B6C289 /* Trip_ManagerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8351C7B088F00B6C289 /* Trip_ManagerUITests.m */; };
+		A991A8361C7B088F00B6C289 /* LoginUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8351C7B088F00B6C289 /* LoginUITests.m */; };
 		A991A8441C7B0B8A00B6C289 /* LoopBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A991A8431C7B0B8A00B6C289 /* LoopBack.framework */; };
 		A991A8471C7B0BC800B6C289 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8461C7B0BC800B6C289 /* LoginViewController.m */; };
 		A991A84B1C7B0C8900B6C289 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A991A84A1C7B0C8900B6C289 /* Security.framework */; };
@@ -59,6 +59,8 @@
 		A991A8CD1C7EEC6500B6C289 /* EditUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8CC1C7EEC6500B6C289 /* EditUserViewController.m */; };
 		A991A8D21C848FBA00B6C289 /* PdfCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8D11C848FBA00B6C289 /* PdfCreator.m */; };
 		A991A8D41C85989F00B6C289 /* Planner.xib in Resources */ = {isa = PBXBuildFile; fileRef = A991A8D31C85989F00B6C289 /* Planner.xib */; };
+		A991A8D61C879E5500B6C289 /* TripUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A991A8D51C879E5500B6C289 /* TripUITests.m */; };
+		A9E858F61C87B27600C7D50A /* UserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E858F51C87B27600C7D50A /* UserUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +97,7 @@
 		A991A82A1C7B088F00B6C289 /* Trip_ManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip_ManagerTests.m; sourceTree = "<group>"; };
 		A991A82C1C7B088F00B6C289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A991A8311C7B088F00B6C289 /* Trip ManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Trip ManagerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A991A8351C7B088F00B6C289 /* Trip_ManagerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Trip_ManagerUITests.m; sourceTree = "<group>"; };
+		A991A8351C7B088F00B6C289 /* LoginUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUITests.m; sourceTree = "<group>"; };
 		A991A8371C7B088F00B6C289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A991A8431C7B0B8A00B6C289 /* LoopBack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LoopBack.framework; sourceTree = "<group>"; };
 		A991A8451C7B0BC800B6C289 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -179,6 +181,8 @@
 		A991A8D01C848FBA00B6C289 /* PdfCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfCreator.h; sourceTree = "<group>"; };
 		A991A8D11C848FBA00B6C289 /* PdfCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfCreator.m; sourceTree = "<group>"; };
 		A991A8D31C85989F00B6C289 /* Planner.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Planner.xib; sourceTree = "<group>"; };
+		A991A8D51C879E5500B6C289 /* TripUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TripUITests.m; sourceTree = "<group>"; };
+		A9E858F51C87B27600C7D50A /* UserUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserUITests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,7 +285,9 @@
 		A991A8341C7B088F00B6C289 /* Trip ManagerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				A991A8351C7B088F00B6C289 /* Trip_ManagerUITests.m */,
+				A991A8351C7B088F00B6C289 /* LoginUITests.m */,
+				A991A8D51C879E5500B6C289 /* TripUITests.m */,
+				A9E858F51C87B27600C7D50A /* UserUITests.m */,
 				A991A8371C7B088F00B6C289 /* Info.plist */,
 			);
 			path = "Trip ManagerUITests";
@@ -617,7 +623,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A991A8361C7B088F00B6C289 /* Trip_ManagerUITests.m in Sources */,
+				A991A8D61C879E5500B6C289 /* TripUITests.m in Sources */,
+				A991A8361C7B088F00B6C289 /* LoginUITests.m in Sources */,
+				A9E858F61C87B27600C7D50A /* UserUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,6 +841,7 @@
 				A991A83C1C7B088F00B6C289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A991A83D1C7B088F00B6C289 /* Build configuration list for PBXNativeTarget "Trip ManagerTests" */ = {
 			isa = XCConfigurationList;
@@ -841,6 +850,7 @@
 				A991A83F1C7B088F00B6C289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A991A8401C7B088F00B6C289 /* Build configuration list for PBXNativeTarget "Trip ManagerUITests" */ = {
 			isa = XCConfigurationList;
@@ -849,6 +859,7 @@
 				A991A8421C7B088F00B6C289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

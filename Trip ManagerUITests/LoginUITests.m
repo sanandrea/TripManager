@@ -9,13 +9,13 @@
 #import <XCTest/XCTest.h>
 static NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
 
-@interface Trip_ManagerUITests : XCTestCase{
+@interface LoginUITests : XCTestCase{
     XCUIApplication *app;
 }
 
 @end
 
-@implementation Trip_ManagerUITests
+@implementation LoginUITests
 
 - (void)setUp {
     [super setUp];
@@ -52,7 +52,7 @@ static NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
     
     XCUIElement *usernameTextField = app.textFields[@"Username"];
     [usernameTextField tap];
-    [usernameTextField typeText:[Trip_ManagerUITests randomUsername]];
+    [usernameTextField typeText:[LoginUITests randomUsername]];
     
     XCUIElement *nextButton = app.buttons[@"Next"];
     [nextButton tap];

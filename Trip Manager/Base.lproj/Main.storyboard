@@ -567,8 +567,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="215.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <datePicker tag="99" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5nv-hs-mBS">
-                                            <rect key="frame" x="0.0" y="-1" width="600" height="216"/>
+                                        <datePicker tag="99" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5nv-hs-mBS">
+                                            <rect key="frame" x="0.0" y="1" width="600" height="214"/>
                                             <date key="date" timeIntervalSinceReferenceDate="477923798.75433701">
                                                 <!--2016-02-23 12:36:38 +0000-->
                                             </date>
@@ -577,6 +577,12 @@
                                             </connections>
                                         </datePicker>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="5nv-hs-mBS" secondAttribute="trailing" id="4zE-R7-fo3"/>
+                                        <constraint firstItem="5nv-hs-mBS" firstAttribute="top" secondItem="QiO-1C-1kv" secondAttribute="top" constant="1" id="6PK-5r-QQx"/>
+                                        <constraint firstItem="5nv-hs-mBS" firstAttribute="leading" secondItem="QiO-1C-1kv" secondAttribute="leading" id="9hF-Pt-KhA"/>
+                                        <constraint firstAttribute="bottom" secondItem="5nv-hs-mBS" secondAttribute="bottom" constant="0.5" id="xNB-Ix-6b2"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" id="WjD-mt-gCz" customClass="CommentCell">
