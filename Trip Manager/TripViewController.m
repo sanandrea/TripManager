@@ -227,16 +227,19 @@ const int DAY_SECONDS = 86400;
                                           NSForegroundColorAttributeName: self.view.tintColor
                                           } forState:UIControlStateNormal];
     [self.logout setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-sign-out"]];
+    self.logout.isAccessibilityElement = YES;
     [self.addEntry setTitleTextAttributes:@{
                                                NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
                                                NSForegroundColorAttributeName: self.view.tintColor
                                                } forState:UIControlStateNormal];
     [self.addEntry setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-plus"]];
+    self.addEntry.isAccessibilityElement = YES;
     [self.planner setTitleTextAttributes:@{
                                            NSFontAttributeName: [UIFont fontWithName:@"FontAwesome" size:24.0],
                                            NSForegroundColorAttributeName: self.view.tintColor
                                            } forState:UIControlStateNormal];
     [self.planner setTitle:[NSString fontAwesomeIconStringForIconIdentifier:@"fa-calendar"]];
+    self.planner.isAccessibilityElement = YES;
 }
 
 #pragma mark - Filtering

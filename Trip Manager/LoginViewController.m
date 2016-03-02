@@ -95,29 +95,29 @@
     _activeField = textField;
     self.userTapped = NO;
 }
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.userNameTextField) {
-        if (!self.userTapped){
-            [textField resignFirstResponder];
-            [self.passwordTextField becomeFirstResponder];
-        }
+
+        [textField resignFirstResponder];
+        [self.passwordTextField becomeFirstResponder];
+        
     }else if (textField == self.passwordTextField){
-        if (!self.userTapped) {
-            [textField resignFirstResponder];
-            if ([self.registerSwitch isOn]) {
-                [self.repeatTextField becomeFirstResponder];
-            }else{
-                [self goAction:self];
-            }
-        }
-    }else if (textField == self.repeatTextField){
-        if (!self.userTapped) {
-            [textField resignFirstResponder];
+        [textField resignFirstResponder];
+        if ([self.registerSwitch isOn]) {
+            [self.repeatTextField becomeFirstResponder];
+        }else{
             [self goAction:self];
         }
+    }else if (textField == self.repeatTextField){
+        [textField resignFirstResponder];
+        [self goAction:self];
     }
     textField.layer.borderColor = [[UIColor clearColor] CGColor];
+    
+    return NO;
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    
 }
 
 #pragma mark - Keayboard Management
@@ -281,10 +281,21 @@
 - (IBAction)switchAction:(id)sender {
     if (self.registerSwitch.isOn) {
         [self.goButton setTitle:@"Register" forState:UIControlStateNormal];
+        self.passwordTextField.returnKeyType = UIReturnKeyNext;
         self.repeatTextField.hidden = NO;
     }else{
+        self.passwordTextField.returnKeyType = UIReturnKeyDone;
         self.repeatTextField.hidden = YES;
         [self.goButton setTitle:@"Login" forState:UIControlStateNormal];
     }
+    
+    if ([self.passwordTextField isFirstResponder]) {
+        [self.passwordTextField resignFirstResponder];
+        [self.passwordTextField becomeFirstResponder];
+    }
+    if ([self.repeatTextField isFirstResponder]) {
+        [self.repeatTextField resignFirstResponder];
+    }
+
 }
 @end
