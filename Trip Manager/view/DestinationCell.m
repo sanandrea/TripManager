@@ -22,10 +22,12 @@
 }
 
 - (NSDictionary*) getKeyValueCouple{
-    return @{@"destination": self.destinationValue.text};
+    
+    return [self.destinationValue.text length] > 0 ? @{@"destination": self.destinationValue.text} : @{@"destination": [NSNull null]};
 }
 
 - (void) customizeWithData:(Trip*) trip{
+    
     self.destinationValue.text = trip.destination;
 }
 

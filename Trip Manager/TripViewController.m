@@ -37,6 +37,7 @@ const int DAY_SECONDS = 86400;
     self.title = @"Trips";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    self.tableView.allowsSelectionDuringEditing = YES;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self customizeToolbar];
@@ -307,7 +308,8 @@ const int DAY_SECONDS = 86400;
                                                             fromDate:today
                                                               toDate:start
                                                              options:NSCalendarWrapComponents];
-        return [components day] < 30;
+        return [components day] < 30 && [components day] > 0;
+        
         
     }];
     

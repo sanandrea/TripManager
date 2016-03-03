@@ -41,6 +41,8 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 
 @property (nonatomic, strong) IBOutlet UIDatePicker *pickerView;
 
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
 
 @end
 
@@ -64,6 +66,13 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
     UITableViewCell *pickerViewCellToCheck = [self.tableView dequeueReusableCellWithIdentifier:kDatePickerID];
     self.pickerCellRowHeight = CGRectGetHeight(pickerViewCellToCheck.frame);
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [tap setCancelsTouchesInView:NO];
+    [self.view addGestureRecognizer:tap];
+    
     // if the local changes while in the background, we need to be notified so we can update the date
     // format in the table view cells
     //
@@ -79,7 +88,10 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
                                                     name:NSCurrentLocaleDidChangeNotification
                                                   object:nil];
 }
-
+- (void) dismissKeyboard
+{
+    [self.view endEditing:YES];
+}
 
 #pragma mark - Locale
 
@@ -276,6 +288,19 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
     if ([self hasInlineDatePicker])
     {
         before = self.datePickerIndexPath.row < indexPath.row;
+        
+        //check start end date only when "closing picker"
+        if (self.endDate != nil && self.startDate != nil) {
+            if ([self.endDate compare:self.startDate] == NSOrderedAscending) {
+                [self displayErrorWithMessage:NSLocalizedString(@"Start Date after End Date", @"Error message")
+                                     andTitle:NSLocalizedString(@"Data error", @"Error title")];
+                // always deselect the row containing the start or end date
+                [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+                [self.tableView endUpdates];
+                return;
+            }
+        }
+        
     }
     
     BOOL sameCellClicked = (self.datePickerIndexPath.row - 1 == indexPath.row);
@@ -308,6 +333,19 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
 }
 
 
+
+- (void)displayErrorWithMessage:(NSString*)msg andTitle:(NSString*)title{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * action) {
+                                                          }];
+    
+    [alert addAction:defaultAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 #pragma mark - UITableViewDelegate
 
@@ -342,10 +380,15 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
         targetedCellIndexPath = [NSIndexPath indexPathForRow:self.datePickerIndexPath.row - 1 inSection:0];
     }
     
-    
     DateCell *cell = (DateCell*) [self.tableView cellForRowAtIndexPath:targetedCellIndexPath];
     UIDatePicker *targetedDatePicker = sender;
     
+    if ([targetedCellIndexPath row] == 1) {
+        self.startDate = targetedDatePicker.date;
+        
+    }else{
+        self.endDate = targetedDatePicker.date;
+    }
     
     // update the cell's date string
     cell.dateValue.text = [self.dateFormatter stringFromDate:targetedDatePicker.date];
@@ -365,13 +408,22 @@ static NSString *kCommentCell = @"commentCell";     // the remaining cells at th
             id<CellDataProvider> f = (id<CellDataProvider>)cell;
             NSDictionary *currentEntry = [f getKeyValueCouple];
             for (NSString *key in currentEntry) {
+                if (currentEntry[key] == [NSNull null]) {
+                    NSString *msg = [NSString stringWithFormat:@"Could not save trip, field %@ is empty",key];
+                    [self displayErrorWithMessage:NSLocalizedString(msg, @"Empty data on trip message")
+                                         andTitle:NSLocalizedString(@"Save Error", @"Error title")];
+                    return;
+                }
                 [self.trip setValue:currentEntry[key] forKey:key];
             }
         }
     }
     [self.trip saveWithSuccess:^(){
         [self performSegueWithIdentifier:@"unwindToMasterC" sender:self];
-    } failure:CALLBACK_FAILURE_BLOCK];
+    } failure:^(NSError *error){
+        [self displayErrorWithMessage:[error localizedDescription]
+                             andTitle:NSLocalizedString(@"Service Error", @"Server Error")];
+    }];
 }
 @end
 

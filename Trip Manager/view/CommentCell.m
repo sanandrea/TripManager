@@ -22,7 +22,7 @@
 }
 
 - (NSDictionary*) getKeyValueCouple{
-    return @{@"comment": self.commentValue.text};
+    return [self.commentValue.text length] > 0 ? @{@"comment": self.commentValue.text} : @{@"comment": [NSNull null]};
 }
 - (void) customizeWithData:(Trip*) trip{
     self.commentValue.text = trip.comment;

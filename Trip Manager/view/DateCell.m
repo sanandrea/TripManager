@@ -22,7 +22,7 @@
 
 - (NSDictionary*) getKeyValueCouple{
     NSString *key = self.isStartDate ? @"startdate" : @"enddate";
-    return @{key : self.date};
+    return self.date != nil ? @{key: self.date} : @{key: [NSNull null]};
 }
 - (void) customizeWithData:(Trip*) trip{
     self.date = (self.isStartDate) ? trip.startdate : trip.enddate;
